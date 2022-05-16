@@ -1,4 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
-.App{
-    height: 100vh;
+:root{
+    --primary-dark:#079e83;
+    --secondary-color:#212b4b;
 }
+body{
+    background-color: #faf9f9;
+}
+
+
+  .height-90vh{
+      height: 90vh;
+  }

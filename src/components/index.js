@@ -1,2 +1,9 @@
 export { Login } from "./Authentication/Login";
 export { Signup } from "./Authentication/Signup";
+export { MainContainer } from "./MainContainer/MainContainer";
+export { SideMenuBar } from "./SideMenuBar/SideMenuBar";
+export { FollowMenuBar } from "./FollowMenuBar/FollowMenuBar";
+export { SinglePost } from "./SinglePost/SinglePost";
+export { PostList } from "./PostList/PostList";
+export { Comment } from "./Comment/Comment";
+export { ModalInput } from "./ModalInput/ModalInput";

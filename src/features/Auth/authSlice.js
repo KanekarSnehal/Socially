@@ -60,6 +60,7 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+        toast.error(`Some went wrong, Please try again:( ${state.error}`);
       })
       .addCase(signupUser.pending, (state) => {
         state.loading = true;
@@ -70,10 +71,14 @@ const authSlice = createSlice({
         state.user = action.payload.createdUser;
         localStorage.setItem("token", state.token);
         localStorage.setItem("user", JSON.stringify(state.user));
+        toast.success(
+          `Account created Successfully, Welcome ${state.user.fullName}`
+        );
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+        toast.error(`Some went wrong, Please try again:( ${state.error}`);
       });
   },
 });

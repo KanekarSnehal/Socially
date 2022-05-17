@@ -8,8 +8,7 @@ export const loginService = (userDetails) =>
 
 export const signUpService = (userDetails) =>
   axios.post("/api/auth/signup", {
-    firstName: userDetails.firstName,
-    lastName: userDetails.lastName,
+    fullName: userDetails.fullName,
     username: userDetails.userName,
     password: userDetails.password,
   });

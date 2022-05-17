@@ -29,6 +29,7 @@ export const Signup = () => {
         type="text"
         class="form-input w-full rounded-full"
         placeholder="Enter your full name"
+        name="fullName"
         value={signupData.fullName}
         onChange={changeHandler}
       />
@@ -38,6 +39,7 @@ export const Signup = () => {
         type="text"
         class="form-input w-full rounded-full"
         placeholder="Enter your username"
+        name="userName"
         value={signupData.userName}
         onChange={changeHandler}
       />
@@ -46,6 +48,7 @@ export const Signup = () => {
         type="password"
         class="form-input w-full rounded-full"
         placeholder="Enter your password"
+        name="password"
         value={signupData.password}
         onChange={changeHandler}
       />

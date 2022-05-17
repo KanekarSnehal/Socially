@@ -1,44 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiShow } from "react-icons/bi";
+import { useSelector, useDispatch } from "react-redux";
+import { signupUser } from "../../features/";
+import { useNavigate } from "react-router-dom";
 
 export const Signup = () => {
+  const [signupData, setSignupData] = useState({
+    fullName: "",
+    userName: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const changeHandler = (e) => {
+    setSignupData({ ...signupData, [e.target.name]: e.target.value });
+  };
+  const signupHandler = async () => {
+    const response = await dispatch(signupUser(signupData));
+    if (response?.payload.encodedToken) {
+      navigate("/home");
+    }
+  };
+
   return (
     <>
-      <p className="mt-4 ml-2">First Name</p>
+      <p className="mt-4 ml-2">Full Name</p>
       <input
         type="text"
         class="form-input w-full rounded-full"
-        placeholder="Enter your first name"
+        placeholder="Enter your full name"
+        name="fullName"
+        value={signupData.fullName}
+        onChange={changeHandler}
       />
-      <p className="mt-4 ml-2">Last Name</p>
+
+      <p className="mt-4 ml-2">Username</p>
       <input
         type="text"
         class="form-input w-full rounded-full"
-        placeholder="Enter your last name"
-      />
-      <p className="mt-4 ml-2">Email</p>
-      <input
-        type="email"
-        class="form-input w-full rounded-full"
-        placeholder="Enter your email"
+        placeholder="Enter your username"
+        name="userName"
+        value={signupData.userName}
+        onChange={changeHandler}
       />
       <p className="mt-4 ml-2">Password</p>
       <input
         type="password"
         class="form-input w-full rounded-full"
         placeholder="Enter your password"
+        name="password"
+        value={signupData.password}
+        onChange={changeHandler}
       />
-      <p className="mt-4 ml-2">Confirm Password</p>
-      <input
-        type="password"
-        class="form-input w-full rounded-full"
-        placeholder="Confirm password"
-      />
-      <button className="bg-primary-300 mt-6 px-4 py-2.5 w-full rounded-lg hover:bg-primary-500">
-        Login
-      </button>
-      <button className="border-primary-300 border-2 my-4 px-4 py-2.5 w-full rounded-lg hover:bg-primary-100">
-        Test Login
+      <button
+        className="bg-primary-300 mt-6 px-4 py-2.5 w-full rounded-lg hover:bg-primary-500"
+        onClick={signupHandler}
+      >
+        Signup
       </button>
     </>
   );

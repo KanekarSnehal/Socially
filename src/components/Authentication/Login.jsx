@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { loginUser } from "../../features/";
+import { loginUser } from "../../app/features/authSlice";
 import { useNavigate } from "react-router-dom";
 import { RiLoaderFill } from "react-icons/ri";
 

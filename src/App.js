@@ -13,7 +13,6 @@ function App() {
   useEffect(() => {
     if (token) {
       dispatch(fetchAllPosts());
-      dispatch(fetchAllUsers());
     }
   }, [dispatch, token]);
 

@@ -5,6 +5,8 @@ import {
   addPost,
   deletePost,
   editPost,
+  likePost,
+  dislikePost,
 } from "../../services/post";
 
 const initialState = {
@@ -77,6 +79,20 @@ export const editUserPost = createAsyncThunk(
   }
 );
 
+export const likeDislikeUserPost = createAsyncThunk(
+  "post/likeDislikeUserPost",
+  async ({ postId, isLiked }, { rejectWithValue }) => {
+    try {
+      const { data } = isLiked
+        ? await dislikePost(postId)
+        : await likePost(postId);
+      return data.posts;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
 const postSlice = createSlice({
   name: "post",
   initialState,
@@ -133,6 +149,16 @@ const postSlice = createSlice({
       })
       .addCase(editUserPost.rejected, (state) => {
         state.postEditStatus = "rejected";
+      })
+      .addCase(likeDislikeUserPost.pending, (state) => {
+        state.getAllPostsStatus = "pending";
+      })
+      .addCase(likeDislikeUserPost.fulfilled, (state, action) => {
+        state.getAllPostsStatus = "fulfilled";
+        state.allPosts = action.payload;
+      })
+      .addCase(likeDislikeUserPost.rejected, (state) => {
+        state.getAllPostsStatus = "rejected";
       });
   },
 });

@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { AuthPage, Home, Explore } from "../pages";
+import { AuthPage, Home, Explore, Bookmark } from "../pages";
 import { MainContainer } from "../components";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -33,6 +33,14 @@ export const AppRoutes = () => {
           element={
             <MainContainer>
               <Explore />
+            </MainContainer>
+          }
+        />
+        <Route
+          path="/bookmark"
+          element={
+            <MainContainer>
+              <Bookmark />
             </MainContainer>
           }
         />

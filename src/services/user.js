@@ -13,3 +13,11 @@ export const followUser = (userId) =>
 
 export const unFollowUser = (userId) =>
   axios.post(`${userUrl}/${userId}`, config);
+
+export const getBookmarks = () => axios.get(`${userUrl}/bookmark`, config);
+
+export const bookmarkPost = (postId) =>
+  axios.post(`${userUrl}/bookmark/${postId}`, {}, config);
+
+export const unBookmarkPost = (postId) =>
+  axios.post(`${userUrl}/remove-bookmark/${postId}`, {}, config);

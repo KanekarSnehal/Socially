@@ -26,8 +26,8 @@ export const editPost = (postData) =>
 
 // like a post of user
 export const likePost = (postId) =>
-  axios.post(`${postUrl}/like/${postId}`, config);
+  axios.post(`${postUrl}/like/${postId}`, {}, config);
 
 // dislike a post of user
 export const dislikePost = (postId) =>
-  axios.post(`${postUrl}/dislike/${postId}`, config);
+  axios.post(`${postUrl}/dislike/${postId}`, {}, config);

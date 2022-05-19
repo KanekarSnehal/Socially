@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { IoMdMore } from "react-icons/io";
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { BiBookmark } from "react-icons/bi";
 import { Comment } from "../index";
 import { FiEdit } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteUserPost } from "../../app/features/postSlice";
+import {
+  deleteUserPost,
+  likeDislikeUserPost,
+} from "../../app/features/postSlice";
 import { openModal } from "../../app/features/modalSlice";
 
 export const SinglePost = ({ post }) => {
@@ -17,13 +20,17 @@ export const SinglePost = ({ post }) => {
   const {
     _id,
     content,
-    likes: { likeCount, likedBy, dislikedBy },
+    likes: { likeCount, likedBy },
     username,
   } = post;
 
   const currentUserInfo =
     allUsers &&
     allUsers.find((currentUser) => currentUser.username === username);
+
+  const isLiked = likedBy?.some(
+    (likeUser) => likeUser.username === user.username
+  );
 
   return (
     <>
@@ -72,9 +79,24 @@ export const SinglePost = ({ post }) => {
         <div className="flex flex-col">
           <p className="break-all text-gray-600">{content}</p>
           <div className="flex my-3 text-secondary-300 text-lg">
-            <div className="flex items-center justify-center mr-4 cursor-pointer">
-              <FaRegHeart className="mr-2" />
-              <span>Like</span>
+            <div
+              className="flex items-center justify-center mr-4 cursor-pointer"
+              onClick={() => {
+                dispatch(
+                  likeDislikeUserPost({ postId: _id, isLiked: isLiked })
+                );
+              }}
+            >
+              {isLiked ? (
+                <FaHeart className="mr-2" />
+              ) : (
+                <FaRegHeart className="mr-2" />
+              )}
+              <span>
+                {likeCount === 0
+                  ? "Be the first person to like"
+                  : `${likeCount} Likes`}
+              </span>
             </div>
             <div className="flex items-center justify-center cursor-pointer">
               <BiBookmark className="mr-2" />

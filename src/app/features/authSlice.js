@@ -3,8 +3,8 @@ import { loginService, signUpService } from "../../services/auth";
 import { toast } from "react-toastify";
 
 const initialState = {
-  token: localStorage.getItem("token") ?? null,
-  user: localStorage.getItem("user") ?? null,
+  token: localStorage.getItem("token") || null,
+  user: JSON.parse(localStorage.getItem("user")) || null,
   loading: false,
   error: null,
 };
@@ -70,7 +70,7 @@ const authSlice = createSlice({
         state.token = action.payload.encodedToken;
         state.user = action.payload.createdUser;
         localStorage.setItem("token", state.token);
-        localStorage.setItem("user", JSON.stringify(state.user));
+        localStorage.setItem("user", state.user);
         toast.success(
           `Account created Successfully, Welcome ${state.user.fullName}`
         );

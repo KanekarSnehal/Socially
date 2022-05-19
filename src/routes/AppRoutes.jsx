@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { AuthPage, Home } from "../features";
+import { AuthPage, Home, Explore } from "../pages";
 import { MainContainer } from "../components";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -25,6 +25,14 @@ export const AppRoutes = () => {
           element={
             <MainContainer>
               <Home />
+            </MainContainer>
+          }
+        />
+        <Route
+          path="/explore"
+          element={
+            <MainContainer>
+              <Explore />
             </MainContainer>
           }
         />

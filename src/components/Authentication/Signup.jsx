@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BiShow } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
-import { signupUser } from "../../features/";
+import { signupUser } from "../../app/features/authSlice";
 import { useNavigate } from "react-router-dom";
 
 export const Signup = () => {

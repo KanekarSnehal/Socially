@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { PostList } from "../components";
+import { PostList } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 
 export const Explore = () => {

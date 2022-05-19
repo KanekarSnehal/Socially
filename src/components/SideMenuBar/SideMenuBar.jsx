@@ -33,7 +33,7 @@ export const SideMenuBar = () => {
             <MdExplore className="mr-3.5" />
             <span>Explore</span>
           </NavLink>
-          <NavLink className={isActiveClass} to="/">
+          <NavLink className={isActiveClass} to="/bookmark">
             <BsBookmarkFill className="mr-3.5" />
             <span>Bookmark</span>
           </NavLink>

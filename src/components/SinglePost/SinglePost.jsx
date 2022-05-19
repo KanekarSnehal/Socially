@@ -6,9 +6,11 @@ import { Comment } from "../index";
 import { FiEdit } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
+import { RiBookmarkFill, RiBookmarkLine } from "react-icons/ri";
 import {
   deleteUserPost,
   likeDislikeUserPost,
+  bookmarkUnbookmarkUserPost,
 } from "../../app/features/postSlice";
 import { openModal } from "../../app/features/modalSlice";
 
@@ -17,6 +19,7 @@ export const SinglePost = ({ post }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { allUsers } = useSelector((state) => state.user);
+  const { bookmarks } = useSelector((state) => state.post);
   const {
     _id,
     content,
@@ -24,13 +27,15 @@ export const SinglePost = ({ post }) => {
     username,
   } = post;
 
-  const currentUserInfo =
-    allUsers &&
-    allUsers.find((currentUser) => currentUser.username === username);
+  const currentUserInfo = allUsers?.find(
+    (currentUser) => currentUser.username === username
+  );
 
   const isLiked = likedBy?.some(
     (likeUser) => likeUser.username === user.username
   );
+
+  const isBookmarked = bookmarks?.some((post) => post._id === _id);
 
   return (
     <>
@@ -98,8 +103,20 @@ export const SinglePost = ({ post }) => {
                   : `${likeCount} Likes`}
               </span>
             </div>
-            <div className="flex items-center justify-center cursor-pointer">
-              <BiBookmark className="mr-2" />
+            <div
+              className="flex items-center justify-center cursor-pointer"
+              onClick={() =>
+                dispatch(
+                  bookmarkUnbookmarkUserPost({ postId: _id, isBookmarked })
+                )
+              }
+            >
+              {isBookmarked ? (
+                <RiBookmarkFill className="mr-2" />
+              ) : (
+                <RiBookmarkLine className="mr-2" />
+              )}
+
               <span>Bookmark</span>
             </div>
           </div>

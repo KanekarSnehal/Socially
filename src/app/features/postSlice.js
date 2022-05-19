@@ -8,10 +8,17 @@ import {
   likePost,
   dislikePost,
 } from "../../services/post";
+import {
+  bookmarkPost,
+  getBookmarks,
+  unBookmarkPost,
+} from "../../services/user";
 
 const initialState = {
   allPosts: [],
   userPosts: [],
+  bookmarks: [],
+  bookmarkStatus: "idle",
   getAllPostsStatus: "idle",
   getUserPostsStatus: "idle",
   postAddStatus: "idle",
@@ -43,6 +50,17 @@ export const fetchUserPosts = createAsyncThunk(
   }
 );
 
+export const fetchAllBookmarks = createAsyncThunk(
+  "post/getBookmarks",
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await getBookmarks();
+      return data.bookmarks;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
 export const addUserPost = createAsyncThunk(
   "post/addPost",
   async (postData, { rejectWithValue }) => {
@@ -87,6 +105,20 @@ export const likeDislikeUserPost = createAsyncThunk(
         ? await dislikePost(postId)
         : await likePost(postId);
       return data.posts;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
+export const bookmarkUnbookmarkUserPost = createAsyncThunk(
+  "post/bookmarkUnbookmarkUserPost",
+  async ({ postId, isBookmarked }, { rejectWithValue }) => {
+    try {
+      const { data } = isBookmarked
+        ? await unBookmarkPost(postId)
+        : await bookmarkPost(postId);
+      return data.bookmarks;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -159,6 +191,26 @@ const postSlice = createSlice({
       })
       .addCase(likeDislikeUserPost.rejected, (state) => {
         state.getAllPostsStatus = "rejected";
+      })
+      .addCase(fetchAllBookmarks.pending, (state) => {
+        state.bookmarkStatus = "pending";
+      })
+      .addCase(fetchAllBookmarks.fulfilled, (state, action) => {
+        state.bookmarkStatus = "fulfilled";
+        state.bookmarks = action.payload;
+      })
+      .addCase(fetchAllBookmarks.rejected, (state) => {
+        state.bookmarkStatus = "rejected";
+      })
+      .addCase(bookmarkUnbookmarkUserPost.pending, (state) => {
+        state.bookmarkStatus = "pending";
+      })
+      .addCase(bookmarkUnbookmarkUserPost.fulfilled, (state, action) => {
+        state.bookmarkStatus = "fulfilled";
+        state.bookmarks = action.payload;
+      })
+      .addCase(bookmarkUnbookmarkUserPost.rejected, (state) => {
+        state.bookmarkStatus = "rejected";
       });
   },
 });

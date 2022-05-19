@@ -23,3 +23,11 @@ export const deletePost = (postId) =>
 // edit a post from user's db
 export const editPost = (postData) =>
   axios.post(`${postUrl}/edit/${postData._id}`, { postData }, config);
+
+// like a post of user
+export const likePost = (postId) =>
+  axios.post(`${postUrl}/like/${postId}`, config);
+
+// dislike a post of user
+export const dislikePost = (postId) =>
+  axios.post(`${postUrl}/dislike/${postId}`, config);

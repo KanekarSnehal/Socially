@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppRoutes } from "./routes/AppRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { fetchAllPosts } from "./app/features/postSlice";
+import { fetchAllBookmarks, fetchAllPosts } from "./app/features/postSlice";
 import { fetchAllUsers } from "./app/features/userSlice";
 
 function App() {
@@ -19,8 +19,10 @@ function App() {
   useEffect(() => {
     if (token) {
       dispatch(fetchAllUsers());
+      dispatch(fetchAllBookmarks());
     }
   }, [token]);
+
   return (
     <div className="App">
       <ToastContainer autoClose={2000} theme="colored" />

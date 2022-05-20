@@ -7,3 +7,4 @@ export { SinglePost } from "./SinglePost/SinglePost";
 export { PostList } from "./PostList/PostList";
 export { Comment } from "./Comment/Comment";
 export { ModalInput } from "./ModalInput/ModalInput";
+export { UserDetails } from "./UserDetails/UserDetails";

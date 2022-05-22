@@ -9,7 +9,7 @@ export const getPostByPostId = (postId) => axios.get(`${postUrl}/${postId}`);
 
 // get all posts by username
 export const getPostsByUserName = (username) =>
-  axios.get(`${postUrl}/${username}`);
+  axios.get(`${postUrl}/user/${username}`);
 
 //   add new post to user's db
 export const addPost = (postData) => {

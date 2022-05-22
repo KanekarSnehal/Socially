@@ -8,3 +8,5 @@ export { PostList } from "./PostList/PostList";
 export { Comment } from "./Comment/Comment";
 export { ModalInput } from "./ModalInput/ModalInput";
 export { UserDetails } from "./UserDetails/UserDetails";
+export { FollowButton } from "./FollowButton/FollowButton";
+export { ProfileModal } from "./ProfileModal/ProfileModal";

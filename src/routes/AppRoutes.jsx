@@ -1,6 +1,13 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { AuthPage, Home, Explore, Bookmark, Profile } from "../pages";
+import {
+  AuthPage,
+  Home,
+  Explore,
+  Bookmark,
+  Profile,
+  UserProfile,
+} from "../pages";
 import { MainContainer } from "../components";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -45,7 +52,15 @@ export const AppRoutes = () => {
           }
         />
         <Route
-          path="/profile"
+          path="/user-profile"
+          element={
+            <MainContainer>
+              <UserProfile />
+            </MainContainer>
+          }
+        />
+        <Route
+          path="/profile/:username"
           element={
             <MainContainer>
               <Profile />

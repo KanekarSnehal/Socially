@@ -7,7 +7,7 @@ import { ModalInput } from "../index";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import { logout } from "../../app/features/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { openModal, closeModal } from "../../app/features/modalSlice";
 
@@ -17,6 +17,7 @@ export const SideMenuBar = () => {
       isActive && "bg-secondary-100 font-semibold text-secondary-300"
     }`;
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
   return (
     <>
       <aside className="sticky top-8 xl:w-1/4 pr-4 py-2 hidden md:flex flex-col height-90vh">
@@ -37,7 +38,7 @@ export const SideMenuBar = () => {
             <BsBookmarkFill className="mr-3.5" />
             <span>Bookmark</span>
           </NavLink>
-          <NavLink className={isActiveClass} to="/">
+          <NavLink className={isActiveClass} to="/user-profile">
             <MdAccountCircle className="mr-3.5" />
             <span>Profile</span>
           </NavLink>

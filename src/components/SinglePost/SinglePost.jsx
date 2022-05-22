@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { IoMdMore } from "react-icons/io";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { BiBookmark } from "react-icons/bi";
 import { Comment } from "../index";
 import { FiEdit } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
@@ -13,6 +12,7 @@ import {
   bookmarkUnbookmarkUserPost,
 } from "../../app/features/postSlice";
 import { openModal } from "../../app/features/modalSlice";
+import { useNavigate } from "react-router-dom";
 
 export const SinglePost = ({ post }) => {
   const [showOptions, setShowOptions] = useState(false);
@@ -26,7 +26,7 @@ export const SinglePost = ({ post }) => {
     likes: { likeCount, likedBy },
     username,
   } = post;
-
+  const navigate = useNavigate();
   const currentUserInfo = allUsers?.find(
     (currentUser) => currentUser.username === username
   );
@@ -37,6 +37,12 @@ export const SinglePost = ({ post }) => {
 
   const isBookmarked = bookmarks?.some((post) => post._id === _id);
 
+  const handleNavigate = () => {
+    user.username === username
+      ? navigate("/user-profile")
+      : navigate(`/profile/${username}`);
+  };
+
   return (
     <>
       <div className=" bg-white px-6 py-4 border rounded-lg shadow-lg  flex h-fit flex-col ">
@@ -44,9 +50,10 @@ export const SinglePost = ({ post }) => {
           <img
             className="h-12 rounded-full cursor-pointer"
             src={currentUserInfo?.profileImage}
+            onClick={handleNavigate}
           />
           <div className="flex items-center justify-between w-full ml-2">
-            <div>
+            <div onClick={handleNavigate}>
               <span className="md:text-lg font-semibold cursor-pointer ml-1 mr-1">
                 {currentUserInfo?.fullName}
               </span>

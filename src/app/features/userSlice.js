@@ -1,9 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getAllUsers } from "../../services/user";
+import { getAllUsers, getUserByUsername } from "../../services/user";
 
 const initialState = {
   allUsers: [],
   allUserStatus: "idle",
+  userDetails: {},
+  userDetailsStatus: "idle",
 };
 
 export const fetchAllUsers = createAsyncThunk(
@@ -11,7 +13,19 @@ export const fetchAllUsers = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await getAllUsers();
-      return data;
+      return data.users;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
+export const fetchUserDetails = createAsyncThunk(
+  "post/getUserByUsername",
+  async (username, { rejectWithValue }) => {
+    try {
+      const { data } = await getUserByUsername(username);
+      return data.user;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -29,10 +43,20 @@ const userSlice = createSlice({
       })
       .addCase(fetchAllUsers.fulfilled, (state, action) => {
         state.allUserStatus = "fulfilled";
-        state.allUsers = action.payload.users;
+        state.allUsers = action.payload;
       })
       .addCase(fetchAllUsers.rejected, (state) => {
         state.allUserStatus = "rejected";
+      })
+      .addCase(fetchUserDetails.pending, (state) => {
+        state.userDetailsStatus = "pending";
+      })
+      .addCase(fetchUserDetails.fulfilled, (state, action) => {
+        state.userDetailsStatus = "fulfilled";
+        state.userDetails = action.payload;
+      })
+      .addCase(fetchUserDetails.rejected, (state) => {
+        state.userDetailsStatus = "rejected";
       });
   },
 });

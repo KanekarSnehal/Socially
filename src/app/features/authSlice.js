@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { loginService, signUpService } from "../../services/auth";
 import { toast } from "react-toastify";
+import { editUserData } from "../../services/user";
 
 const initialState = {
   token: localStorage.getItem("token") || null,
@@ -27,6 +28,18 @@ export const signupUser = createAsyncThunk(
     try {
       const { data } = await signUpService(userDetails);
       return data;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
+export const editUserDetails = createAsyncThunk(
+  "auth/editUserData",
+  async (userDetails, { rejectWithValue }) => {
+    try {
+      const { data } = await editUserData(userDetails);
+      return data.user;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -79,6 +92,19 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
         toast.error(`Some went wrong, Please try again:( ${state.error}`);
+      })
+      .addCase(editUserDetails.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(editUserDetails.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+        localStorage.setItem("user", JSON.stringify(state.user));
+      })
+      .addCase(editUserDetails.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        toast.error(`Some went wrong, Please try again, ${state.error}`);
       });
   },
 });

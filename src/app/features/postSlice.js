@@ -40,9 +40,9 @@ export const fetchAllPosts = createAsyncThunk(
 
 export const fetchUserPosts = createAsyncThunk(
   "post/getPostsByUserName",
-  async (_, { rejectWithValue }) => {
+  async (username, { rejectWithValue }) => {
     try {
-      const { data } = await getPostsByUserName();
+      const { data } = await getPostsByUserName(username);
       return data.posts;
     } catch (e) {
       return rejectWithValue(e.message);

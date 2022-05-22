@@ -16,6 +16,7 @@ export const users = [
       "https://res.cloudinary.com/dflebgpde/image/upload/v1652528175/socially/hacker_obpy2s.png",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    link: "https://adarshbalika.netlify.app",
   },
   {
     _id: uuid(),
@@ -27,6 +28,7 @@ export const users = [
       "https://res.cloudinary.com/dflebgpde/image/upload/v1652866709/socially/IMG_20190404_181111-min_tjvnvy.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    link: "https://snehalcodes.hashnode.dev/",
   },
   {
     _id: uuid(),
@@ -38,6 +40,7 @@ export const users = [
       "https://res.cloudinary.com/dflebgpde/image/upload/v1652867848/socially/profile_1_tpbsuk.png",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    link: "",
   },
 
   {
@@ -50,6 +53,7 @@ export const users = [
       "https://res.cloudinary.com/dflebgpde/image/upload/v1652867247/socially/profile_hcosib.png",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    link: "",
   },
   {
     _id: uuid(),
@@ -61,6 +65,7 @@ export const users = [
       "https://res.cloudinary.com/dflebgpde/image/upload/v1652867848/socially/profile_1_tpbsuk.png",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    link: "",
   },
   {
     _id: uuid(),
@@ -72,6 +77,7 @@ export const users = [
       "https://res.cloudinary.com/dflebgpde/image/upload/v1652868350/socially/bKUpXvlc_400x400_grtnm6.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    link: "",
   },
 
   {
@@ -84,6 +90,7 @@ export const users = [
       "https://res.cloudinary.com/dflebgpde/image/upload/v1652867848/socially/profile_1_tpbsuk.png",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    link: "",
   },
   {
     _id: uuid(),
@@ -95,6 +102,7 @@ export const users = [
       "https://res.cloudinary.com/dflebgpde/image/upload/v1652867848/socially/profile_1_tpbsuk.png",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    link: "",
   },
   {
     _id: uuid(),
@@ -106,5 +114,6 @@ export const users = [
       "https://res.cloudinary.com/dflebgpde/image/upload/v1652867247/socially/profile_hcosib.png",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    link: "",
   },
 ];

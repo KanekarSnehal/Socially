@@ -15,9 +15,7 @@ export const ProfileModal = ({ profileModal, setProfileModal }) => {
   return reactDom.createPortal(
     <div
       className={`fixed w-full h-full inset-0 backdrop-brightness-90 z-20 flex justify-center items-center`}
-      onClick={() => {
-        setProfileModal(false);
-      }}
+      onClick={() => setProfileModal(false)}
     >
       <div
         className="bg-primary-100 px-4 py-4 rounded-xl w-2/3 md:w-1/2 lg:w-4/12 flex flex-col"
@@ -25,9 +23,7 @@ export const ProfileModal = ({ profileModal, setProfileModal }) => {
       >
         <div
           className="duration-200 py-1 px-1 hover:bg-gray-400 rounded-full cursor-pointer ml-auto"
-          onClick={() => {
-            setProfileModal(false);
-          }}
+          onClick={() => setProfileModal(false)}
         >
           <GrClose />
         </div>

@@ -25,7 +25,7 @@ export const Profile = () => {
       <p className="font-semibold text-2xl text-secondary-300 mb-8">Profile</p>
       {userDetails?.username && (
         <>
-          <UserDetails user={userDetails} />
+          <UserDetails user={userDetails} postLength={userPosts.length} />
           <PostList posts={userPosts} />
         </>
       )}

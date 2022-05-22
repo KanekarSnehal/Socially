@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FollowButton } from "../FollowButton/FollowButton";
 import { ProfileModal } from "../ProfileModal/ProfileModal";
 
-export const UserDetails = ({ user, showEditButton }) => {
+export const UserDetails = ({ user, showEditButton, postLength }) => {
   const [profileModal, setProfileModal] = useState(false);
   return (
     <>
@@ -34,7 +34,7 @@ export const UserDetails = ({ user, showEditButton }) => {
           </div>
           <p className="text-gray-500 font-semibold break-all">{user.bio}</p>
           <div className="font-semibold text-gray-500 gap-8 flex ">
-            <span>3 Posts</span>
+            <span>{postLength} Posts</span>
             <span>{user.followers.length} Followers</span>
             <span>{user.following.length} Following</span>
           </div>

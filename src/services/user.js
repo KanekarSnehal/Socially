@@ -3,7 +3,8 @@ import { userUrl, config } from "../utils/index";
 
 export const getAllUsers = () => axios.get(userUrl);
 
-export const getUserById = (userId) => axios.get(`${userUrl}/${userId}`);
+export const getUserByUsername = (username) =>
+  axios.get(`${userUrl}/${username}`);
 
 export const editUserData = (userData) =>
   axios.post(`${userUrl}/edit`, { userData }, config);

@@ -52,7 +52,6 @@ export const ProfileModal = ({ profileModal, setProfileModal }) => {
               name="bio"
               value={userData.bio}
               onChange={handleChange}
-              placeholder="What's Happening?"
             />
           </div>
 

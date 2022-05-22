@@ -21,7 +21,7 @@ function App() {
       dispatch(fetchAllUsers());
       dispatch(fetchAllBookmarks());
     }
-  }, [token]);
+  }, [dispatch, token]);
 
   return (
     <div className="App">

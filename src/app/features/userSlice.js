@@ -1,11 +1,22 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getAllUsers, getUserByUsername } from "../../services/user";
+import {
+  followUser,
+  getAllUsers,
+  getUserByUsername,
+  unFollowUser,
+} from "../../services/user";
+import { toast } from "react-toastify";
+import { editUserDetails } from "./authSlice";
 
 const initialState = {
   allUsers: [],
   allUserStatus: "idle",
+  allUsersError: null,
   userDetails: {},
   userDetailsStatus: "idle",
+  userDetailsError: null,
+  followUserStatus: "idle",
+  followUserError: null,
 };
 
 export const fetchAllUsers = createAsyncThunk(
@@ -32,6 +43,22 @@ export const fetchUserDetails = createAsyncThunk(
   }
 );
 
+export const followUnfollowUser = createAsyncThunk(
+  "post/followUnfollowUser",
+  async ({ userId, isFollowing, dispatch }, { rejectWithValue }) => {
+    try {
+      console.log(userId, isFollowing);
+      const { data } = isFollowing
+        ? await unFollowUser(userId)
+        : await followUser(userId);
+      dispatch(editUserDetails(data.user));
+      return data;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -45,8 +72,12 @@ const userSlice = createSlice({
         state.allUserStatus = "fulfilled";
         state.allUsers = action.payload;
       })
-      .addCase(fetchAllUsers.rejected, (state) => {
+      .addCase(fetchAllUsers.rejected, (state, action) => {
         state.allUserStatus = "rejected";
+        state.allUsersError = action.payload;
+        toast.error(
+          `Some went wrong, Please try again, ${state.allUsersError}`
+        );
       })
       .addCase(fetchUserDetails.pending, (state) => {
         state.userDetailsStatus = "pending";
@@ -55,8 +86,33 @@ const userSlice = createSlice({
         state.userDetailsStatus = "fulfilled";
         state.userDetails = action.payload;
       })
-      .addCase(fetchUserDetails.rejected, (state) => {
+      .addCase(fetchUserDetails.rejected, (state, action) => {
         state.userDetailsStatus = "rejected";
+        state.userDetailsError = action.payload;
+        toast.error(
+          `Some went wrong, Please try again, ${state.userDetailsError}`
+        );
+      })
+      .addCase(followUnfollowUser.pending, (state) => {
+        state.followUserStatus = "pending";
+      })
+      .addCase(followUnfollowUser.fulfilled, (state, action) => {
+        const { user, followUser } = action.payload;
+        state.followUserStatus = "fulfilled";
+        state.allUsers = state.allUsers.map((currentUser) =>
+          currentUser.username === user.username
+            ? { ...user }
+            : currentUser.username === followUser.username
+            ? { ...followUser }
+            : currentUser
+        );
+      })
+      .addCase(followUnfollowUser.rejected, (state, action) => {
+        state.followUserStatus = "rejected";
+        state.followUserError = action.payload;
+        toast.error(
+          `Some went wrong, Please try again, ${state.followUserError}`
+        );
       });
   },
 });

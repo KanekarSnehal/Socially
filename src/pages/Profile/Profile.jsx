@@ -14,11 +14,11 @@ export const Profile = () => {
 
   useEffect(() => {
     dispatch(fetchUserDetails(username));
-  }, [allUsers]);
+  }, [allUsers, username]);
 
   useEffect(() => {
     dispatch(fetchUserPosts(username));
-  }, [allPosts]);
+  }, [allPosts, username]);
 
   return (
     <div className="lg:w-1/2 w-full px-4 py-2 relative">

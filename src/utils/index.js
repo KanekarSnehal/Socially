@@ -1,1 +1,1 @@
-export { postUrl, userUrl, config } from "./apiUrls";
+export { postUrl, userUrl, commentsUrl, config } from "./apiUrls";

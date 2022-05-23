@@ -1,10 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { followUnfollowUser } from "../../app/features/userSlice";
+import { RiLoaderFill } from "react-icons/ri";
 
 export const FollowButton = ({ userDetails }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const { followUserStatus } = useSelector((state) => state.user);
   const isFollowing = userDetails.followers.some(
     (currentUser) => currentUser.username === user.username
   );
@@ -22,7 +24,11 @@ export const FollowButton = ({ userDetails }) => {
         )
       }
     >
-      Following
+      {followUserStatus === "pending" ? (
+        <RiLoaderFill className="w-max animate-spin text-2xl text-center inline text-secondary-500" />
+      ) : (
+        "Following"
+      )}
     </button>
   ) : (
     <button
@@ -37,7 +43,11 @@ export const FollowButton = ({ userDetails }) => {
         )
       }
     >
-      + Follow
+      {followUserStatus === "pending" ? (
+        <RiLoaderFill className="w-max animate-spin text-2xl text-center inline text-secondary-100" />
+      ) : (
+        "+ Follow"
+      )}
     </button>
   );
 };

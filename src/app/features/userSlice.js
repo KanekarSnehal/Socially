@@ -47,7 +47,6 @@ export const followUnfollowUser = createAsyncThunk(
   "post/followUnfollowUser",
   async ({ userId, isFollowing, dispatch }, { rejectWithValue }) => {
     try {
-      console.log(userId, isFollowing);
       const { data } = isFollowing
         ? await unFollowUser(userId)
         : await followUser(userId);

@@ -19,6 +19,26 @@ export const posts = [
     username: "snehalkanekar",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "sharathnair",
+        content: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "snehalkanekar",
+        content: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -32,6 +52,26 @@ export const posts = [
     username: "prabhavsharma",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "prathmesh",
+        content: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "sharathnair",
+        content: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -45,6 +85,26 @@ export const posts = [
     username: "leena123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "sukanyasen",
+        content: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "prabhavsharma",
+        content: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
 
   {
@@ -59,6 +119,26 @@ export const posts = [
     username: "sharathnair",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "imVkholi",
+        content: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "sharathnair",
+        content: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -72,6 +152,7 @@ export const posts = [
     username: "vedantkanekar",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [],
   },
   {
     _id: uuid(),
@@ -85,6 +166,26 @@ export const posts = [
     username: "adarshbalika",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "vedantkanekar",
+        content: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "sukanyasen",
+        content: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -98,6 +199,26 @@ export const posts = [
     username: "prabhavsharma",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "vedantkanekar",
+        content: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "sukanyasen",
+        content: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -111,6 +232,7 @@ export const posts = [
     username: "prathmesh",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [],
   },
   {
     _id: uuid(),
@@ -124,6 +246,26 @@ export const posts = [
     username: "snehalkanekar",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "prathmesh",
+        content: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "leena123",
+        content: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -137,6 +279,7 @@ export const posts = [
     username: "imVkholi",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [],
   },
   {
     _id: uuid(),
@@ -150,6 +293,7 @@ export const posts = [
     username: "sukanyasen",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [],
   },
   {
     _id: uuid(),
@@ -163,6 +307,26 @@ export const posts = [
     username: "prathmesh",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "vedantkanekar",
+        content: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "snehalkanekar",
+        content: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -176,6 +340,7 @@ export const posts = [
     username: "snehalkanekar",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [],
   },
 
   {
@@ -190,6 +355,26 @@ export const posts = [
     username: "adarshbalika",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "adarshbalika",
+        content: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "sukanyasen",
+        content: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -203,6 +388,26 @@ export const posts = [
     username: "sharathnair",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "sharathnair",
+        content: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "snehalkanekar",
+        content: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -216,6 +421,26 @@ export const posts = [
     username: "sukanyasen",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "adarshbalika",
+        content: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "vedantkanekar",
+        content: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -229,6 +454,26 @@ export const posts = [
     username: "leena123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "prathmesh",
+        content: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "adarshbalika",
+        content: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -242,6 +487,26 @@ export const posts = [
     username: "vedantkanekar",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "imVkholi",
+        content: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "sharathnair",
+        content: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -255,5 +520,25 @@ export const posts = [
     username: "imVkholi",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "sukanyasen",
+        content: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "prabhavsharma",
+        content: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
 ];

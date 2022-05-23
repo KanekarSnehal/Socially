@@ -23,7 +23,10 @@ export const FollowMenuBar = () => {
           <div className="text-center">No Suggestions</div>
         ) : (
           followData.map((user) => (
-            <div className="flex gap-6 justify-between" key={user._id}>
+            <div
+              className="flex gap-6 justify-between items-start"
+              key={user._id}
+            >
               <div className="flex gap-4">
                 <img
                   className="rounded-full self-center cursor-pointer h-10"
@@ -37,7 +40,7 @@ export const FollowMenuBar = () => {
                 </div>
               </div>
               <button
-                className="font-semibold cursor-pointer text-white bg-secondary-300 rounded-2xl px-1.5  hover:bg-secondary-400"
+                className="font-semibold cursor-pointer text-white bg-secondary-300 rounded-2xl px-2 py-1 hover:bg-secondary-400"
                 onClick={() =>
                   dispatch(
                     followUnfollowUser({

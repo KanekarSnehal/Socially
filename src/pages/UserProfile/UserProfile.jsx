@@ -3,12 +3,18 @@ import { UserDetails, PostList } from "../../components";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUserPosts } from "../../app/features/postSlice";
 import { fetchUserDetails } from "../../app/features/userSlice";
+import { editUserDetails } from "../../app/features/authSlice";
 
 export const UserProfile = () => {
   const { user } = useSelector((state) => state.auth);
   const { userPosts } = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const { allPosts } = useSelector((state) => state.post);
+  const { allUsers } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(editUserDetails(user.username));
+  }, [allUsers]);
 
   useEffect(() => {
     dispatch(fetchUserPosts(user.username));

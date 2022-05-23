@@ -9,12 +9,12 @@ export const Profile = () => {
   const dispatch = useDispatch();
   const { username } = useParams();
   const { userPosts } = useSelector((state) => state.post);
-  const { userDetails } = useSelector((state) => state.user);
+  const { userDetails, allUsers } = useSelector((state) => state.user);
   const { allPosts } = useSelector((state) => state.post);
 
   useEffect(() => {
     dispatch(fetchUserDetails(username));
-  }, [username]);
+  }, [allUsers]);
 
   useEffect(() => {
     dispatch(fetchUserPosts(username));

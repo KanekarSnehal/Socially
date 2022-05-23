@@ -9,15 +9,11 @@ import { fetchAllUsers } from "./app/features/userSlice";
 
 function App() {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth);
-  useEffect(() => {
-    if (token) {
-      dispatch(fetchAllPosts());
-    }
-  }, [dispatch, token]);
+  const { token } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (token) {
+      dispatch(fetchAllPosts());
       dispatch(fetchAllUsers());
       dispatch(fetchAllBookmarks());
     }

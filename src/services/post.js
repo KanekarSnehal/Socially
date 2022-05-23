@@ -13,21 +13,21 @@ export const getPostsByUserName = (username) =>
 
 //   add new post to user's db
 export const addPost = (postData) => {
-  return axios.post(postUrl, { postData }, config);
+  return axios.post(postUrl, { postData }, config());
 };
 
 // delete a post from user's db
 export const deletePost = (postId) =>
-  axios.delete(`${postUrl}/${postId}`, config);
+  axios.delete(`${postUrl}/${postId}`, config());
 
 // edit a post from user's db
 export const editPost = (postData) =>
-  axios.post(`${postUrl}/edit/${postData._id}`, { postData }, config);
+  axios.post(`${postUrl}/edit/${postData._id}`, { postData }, config());
 
 // like a post of user
 export const likePost = (postId) =>
-  axios.post(`${postUrl}/like/${postId}`, {}, config);
+  axios.post(`${postUrl}/like/${postId}`, {}, config());
 
 // dislike a post of user
 export const dislikePost = (postId) =>
-  axios.post(`${postUrl}/dislike/${postId}`, {}, config);
+  axios.post(`${postUrl}/dislike/${postId}`, {}, config());

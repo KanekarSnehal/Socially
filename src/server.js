@@ -28,7 +28,6 @@ import {
 
 import {
   getPostCommentsHandler,
-  getPostCommentById,
   addPostCommentHandler,
   editPostCommentHandler,
   deletePostCommentHandler,
@@ -86,7 +85,6 @@ export function makeServer({ environment = "development" } = {}) {
 
       //post comments routes (public)
       this.get("/comments/:postId", getPostCommentsHandler.bind(this));
-      this.get("/comments/:postId/:commentId", getPostCommentById.bind(this));
 
       //post comments routes (private)
       this.post("/comments/add/:postId", addPostCommentHandler.bind(this));
@@ -94,7 +92,7 @@ export function makeServer({ environment = "development" } = {}) {
         "/comments/edit/:postId/:commentId",
         editPostCommentHandler.bind(this)
       );
-      this.post(
+      this.delete(
         "/comments/delete/:postId/:commentId",
         deletePostCommentHandler.bind(this)
       );

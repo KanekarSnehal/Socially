@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoMdMore } from "react-icons/io";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { Comment } from "../index";
@@ -10,6 +10,7 @@ import {
   deleteUserPost,
   likeDislikeUserPost,
   bookmarkUnbookmarkUserPost,
+  addUserComment,
 } from "../../app/features/postSlice";
 import { openModal } from "../../app/features/modalSlice";
 import { useNavigate } from "react-router-dom";
@@ -20,13 +21,16 @@ export const SinglePost = ({ post }) => {
   const { user } = useSelector((state) => state.auth);
   const { allUsers } = useSelector((state) => state.user);
   const { bookmarks } = useSelector((state) => state.post);
+  const [newComment, setNewComment] = useState("");
   const {
     _id,
     content,
     likes: { likeCount, likedBy },
     username,
+    comments,
   } = post;
   const navigate = useNavigate();
+
   const currentUserInfo = allUsers?.find(
     (currentUser) => currentUser.username === username
   );
@@ -41,6 +45,16 @@ export const SinglePost = ({ post }) => {
     user.username === username
       ? navigate("/user-profile")
       : navigate(`/profile/${username}`);
+  };
+
+  const addCommentHandler = () => {
+    dispatch(
+      addUserComment({
+        postId: post._id,
+        commentData: newComment.trim(),
+      })
+    );
+    setNewComment("");
   };
 
   return (
@@ -130,22 +144,35 @@ export const SinglePost = ({ post }) => {
           <div className="flex items-center">
             <img
               className="h-8 rounded-full cursor-pointer"
-              src={currentUserInfo?.profileImage}
+              src={user?.profileImage}
             />
             <div className="self-center border-solid border border-gray-400 grow flex space-between items-center rounded-md px-2 py-1 ml-2">
               <input
                 className="w-full focus:outline-none sm:text-sm mr-2"
                 placeholder="Write your comment"
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
               />
               <button
-                className={`text-sm text-secondary-300 cursor-pointer font-semibold hover:bg-gray-300 px-2 rounded-md`}
+                className={`text-sm text-secondary-300 cursor-pointer font-semibold hover:bg-gray-300 px-2 rounded-md ${
+                  newComment.trim().length === 0 && "cursor-not-allowed"
+                }`}
+                disabled={newComment.trim().length === 0 ? true : false}
+                onClick={addCommentHandler}
               >
                 POST
               </button>
             </div>
           </div>
           <div className="flex flex-col-reverse gap-2">
-            <Comment />
+            {comments.length !== 0 &&
+              comments.map((comment) => (
+                <Comment
+                  key={comment._id}
+                  postId={post._id}
+                  comment={comment}
+                />
+              ))}
           </div>
         </div>
       </div>

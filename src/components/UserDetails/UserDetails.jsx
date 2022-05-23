@@ -4,6 +4,7 @@ import { ProfileModal } from "../ProfileModal/ProfileModal";
 
 export const UserDetails = ({ user, showEditButton, postLength }) => {
   const [profileModal, setProfileModal] = useState(false);
+
   return (
     <>
       <div className=" bg-white px-6 py-4 gap-4 border rounded-lg shadow-lg  flex h-fit sm:gap-6 mb-4">
@@ -29,7 +30,7 @@ export const UserDetails = ({ user, showEditButton, postLength }) => {
                 Edit
               </div>
             ) : (
-              <FollowButton />
+              <FollowButton userDetails={user} />
             )}
           </div>
           <p className="text-gray-500 font-semibold break-all">{user.bio}</p>

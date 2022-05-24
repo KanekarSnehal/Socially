@@ -119,11 +119,7 @@ export const SinglePost = ({ post }) => {
               ) : (
                 <FaRegHeart className="mr-2" />
               )}
-              <span>
-                {likeCount === 0
-                  ? "Be the first person to like"
-                  : `${likeCount} Likes`}
-              </span>
+              <span>{likeCount < 2 ? "Like" : `${likeCount} Likes`}</span>
             </div>
             <div
               className="flex items-center justify-center cursor-pointer"

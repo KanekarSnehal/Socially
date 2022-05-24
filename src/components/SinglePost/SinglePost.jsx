@@ -28,6 +28,7 @@ export const SinglePost = ({ post }) => {
     likes: { likeCount, likedBy },
     username,
     comments,
+    createdAt,
   } = post;
   const navigate = useNavigate();
 
@@ -104,9 +105,9 @@ export const SinglePost = ({ post }) => {
         </div>
         <div className="flex flex-col">
           <p className="break-all text-gray-600">{content}</p>
-          <div className="flex my-3 text-secondary-300 text-lg">
+          <div className="flex my-3 text-secondary-300 sm:text-lg text-sm">
             <div
-              className="flex items-center justify-center mr-4 cursor-pointer"
+              className="flex items-center justify-center sm:mr-8 mr-4 cursor-pointer"
               onClick={() => {
                 dispatch(
                   likeDislikeUserPost({ postId: _id, isLiked: isLiked })
@@ -118,11 +119,7 @@ export const SinglePost = ({ post }) => {
               ) : (
                 <FaRegHeart className="mr-2" />
               )}
-              <span>
-                {likeCount === 0
-                  ? "Be the first person to like"
-                  : `${likeCount} Likes`}
-              </span>
+              <span>{likeCount < 2 ? "Like" : `${likeCount} Likes`}</span>
             </div>
             <div
               className="flex items-center justify-center cursor-pointer"
@@ -140,6 +137,7 @@ export const SinglePost = ({ post }) => {
 
               <span>Bookmark</span>
             </div>
+            <div className="ml-auto">{new Date(createdAt).toDateString()}</div>
           </div>
           <div className="flex items-center">
             <img

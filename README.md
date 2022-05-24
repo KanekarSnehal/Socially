@@ -49,4 +49,4 @@ Checkout the live demo [here](https://socially-media.vercel.app/)
 
 # Preview
 
-[Preview]("https://res.cloudinary.com/dflebgpde/video/upload/v1653388703/socially/Untitled_nakt6y.mp4")
+![Preview](./public/preview.gif)

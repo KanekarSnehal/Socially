@@ -4,13 +4,22 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import reactDom from "react-dom";
 import { openModal, closeModal } from "../../app/features/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { addUserPost, editUserPost } from "../../app/features/postSlice";
+import {
+  addUserPost,
+  editUserComment,
+  editUserPost,
+} from "../../app/features/postSlice";
 
 export const ModalInput = () => {
-  const { modalOpenStatus, modalContent } = useSelector((state) => state.modal);
+  const { modalOpenStatus, modalContent, modalType, additiondalData } =
+    useSelector((state) => state.modal);
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
   const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    modalContent && setInput(modalContent.content);
+  }, [modalContent]);
 
   const postHandler = () => {
     modalContent
@@ -19,9 +28,18 @@ export const ModalInput = () => {
     setInput("");
     dispatch(closeModal());
   };
-  useEffect(() => {
-    modalContent && setInput(modalContent.content);
-  }, [modalContent]);
+
+  const updateHanlder = () => {
+    dispatch(
+      editUserComment({
+        postId: additiondalData,
+        commentId: modalContent._id,
+        commentData: input,
+      })
+    );
+    setInput("");
+    dispatch(closeModal());
+  };
 
   return reactDom.createPortal(
     <div
@@ -56,12 +74,21 @@ export const ModalInput = () => {
           placeholder="What's Happening?"
         />
 
-        <button
-          className="px-2 py-1 bg-secondary-300 text-white flex justify-between hover:bg-secondary-400 mt-3 rounded-lg cursor-pointer flex items-center ml-auto"
-          onClick={postHandler}
-        >
-          POST <RiSendPlaneFill className="ml-2" />
-        </button>
+        {modalType === "POST" ? (
+          <button
+            className="px-2 py-1 bg-secondary-300 text-white flex justify-between hover:bg-secondary-400 mt-3 rounded-lg cursor-pointer flex items-center ml-auto"
+            onClick={postHandler}
+          >
+            POST <RiSendPlaneFill className="ml-2" />
+          </button>
+        ) : (
+          <button
+            className="px-2 py-1 bg-secondary-300 text-white flex justify-between hover:bg-secondary-400 mt-3 rounded-lg cursor-pointer flex items-center ml-auto"
+            onClick={updateHanlder}
+          >
+            UPDATE
+          </button>
+        )}
       </div>
     </div>,
     document.getElementById("modal-root")

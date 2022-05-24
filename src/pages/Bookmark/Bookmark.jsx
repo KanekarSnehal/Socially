@@ -19,7 +19,13 @@ export const Bookmark = () => {
   return (
     <div className="lg:w-1/2 w-full px-4 py-2 relative">
       <p className="font-semibold text-2xl text-secondary-300 mb-8">Bookmark</p>
-      <PostList posts={bookmarkPost} />
+      {bookmarkPost.length !== 0 ? (
+        <PostList posts={bookmarkPost} />
+      ) : (
+        <p className="text-secondary-300 text-2xl text-center font-semibold">
+          Bookmark posts to see them here!
+        </p>
+      )}
     </div>
   );
 };

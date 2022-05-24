@@ -145,6 +145,7 @@ export const SinglePost = ({ post }) => {
             <img
               className="h-8 rounded-full cursor-pointer"
               src={user?.profileImage}
+              onClick={handleNavigate}
             />
             <div className="self-center border-solid border border-gray-400 grow flex space-between items-center rounded-md px-2 py-1 ml-2">
               <input

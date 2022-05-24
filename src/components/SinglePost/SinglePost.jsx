@@ -105,9 +105,9 @@ export const SinglePost = ({ post }) => {
         </div>
         <div className="flex flex-col">
           <p className="break-all text-gray-600">{content}</p>
-          <div className="flex my-3 text-secondary-300 text-lg">
+          <div className="flex my-3 text-secondary-300 sm:text-lg text-sm">
             <div
-              className="flex items-center justify-center mr-8 cursor-pointer"
+              className="flex items-center justify-center sm:mr-8 mr-4 cursor-pointer"
               onClick={() => {
                 dispatch(
                   likeDislikeUserPost({ postId: _id, isLiked: isLiked })

@@ -10,7 +10,7 @@ export const MainContainer = ({ children }) => {
         {children}
         <FollowMenuBar />
       </div>
-      <MobileNavBar />{" "}
+      <MobileNavBar />
     </>
   );
 };

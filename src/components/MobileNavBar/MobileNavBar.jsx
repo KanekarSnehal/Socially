@@ -15,7 +15,7 @@ export const MobileNavBar = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="fixed bottom-0 h-12 shadow-xl rounded-t-lg w-full bg-gray-300 px-2 py-1">
+    <div className="fixed bottom-0 h-12 shadow-xl rounded-t-lg w-full bg-gray-300 px-2 py-1 md:hidden">
       <div className="flex text-xl xl:pl-20 py-1 items-center px-4 justify-between text-secondary-300">
         <NavLink to="/home" className={isActiveClass}>
           <ImHome />

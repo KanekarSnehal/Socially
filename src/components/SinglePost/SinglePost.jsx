@@ -28,6 +28,7 @@ export const SinglePost = ({ post }) => {
     likes: { likeCount, likedBy },
     username,
     comments,
+    createdAt,
   } = post;
   const navigate = useNavigate();
 
@@ -106,7 +107,7 @@ export const SinglePost = ({ post }) => {
           <p className="break-all text-gray-600">{content}</p>
           <div className="flex my-3 text-secondary-300 text-lg">
             <div
-              className="flex items-center justify-center mr-4 cursor-pointer"
+              className="flex items-center justify-center mr-8 cursor-pointer"
               onClick={() => {
                 dispatch(
                   likeDislikeUserPost({ postId: _id, isLiked: isLiked })
@@ -140,6 +141,7 @@ export const SinglePost = ({ post }) => {
 
               <span>Bookmark</span>
             </div>
+            <div className="ml-auto">{new Date(createdAt).toDateString()}</div>
           </div>
           <div className="flex items-center">
             <img

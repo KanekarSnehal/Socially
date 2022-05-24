@@ -165,7 +165,7 @@ export const SinglePost = ({ post }) => {
             </div>
           </div>
           <div className="flex flex-col-reverse gap-2">
-            {comments.length !== 0 &&
+            {comments?.length !== 0 &&
               comments.map((comment) => (
                 <Comment
                   key={comment._id}

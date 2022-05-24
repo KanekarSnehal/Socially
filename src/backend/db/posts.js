@@ -12,12 +12,12 @@ export const posts = [
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium",
     likes: {
-      likeCount: 0,
+      likeCount: 4,
       likedBy: [],
       dislikedBy: [],
     },
     username: "snehalkanekar",
-    createdAt: formatDate(),
+    createdAt: new Date("04/04/2010"),
     updatedAt: formatDate(),
     comments: [
       {
@@ -45,12 +45,12 @@ export const posts = [
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti",
     likes: {
-      likeCount: 0,
+      likeCount: 10,
       likedBy: [],
       dislikedBy: [],
     },
     username: "prabhavsharma",
-    createdAt: formatDate(),
+    createdAt: new Date("06/04/2010"),
     updatedAt: formatDate(),
     comments: [
       {
@@ -78,12 +78,12 @@ export const posts = [
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti qu",
     likes: {
-      likeCount: 0,
+      likeCount: 5,
       likedBy: [],
       dislikedBy: [],
     },
     username: "leena123",
-    createdAt: formatDate(),
+    createdAt: new Date("07/04/2010"),
     updatedAt: formatDate(),
     comments: [
       {
@@ -112,7 +112,7 @@ export const posts = [
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui",
     likes: {
-      likeCount: 0,
+      likeCount: 2,
       likedBy: [],
       dislikedBy: [],
     },
@@ -191,7 +191,7 @@ export const posts = [
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium",
     likes: {
-      likeCount: 0,
+      likeCount: 16,
       likedBy: [],
       dislikedBy: [],
     },
@@ -224,7 +224,7 @@ export const posts = [
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique",
     likes: {
-      likeCount: 0,
+      likeCount: 12,
       likedBy: [],
       dislikedBy: [],
     },
@@ -296,7 +296,7 @@ export const posts = [
     _id: uuid(),
     content: "At vero eos et accusamus",
     likes: {
-      likeCount: 0,
+      likeCount: 56,
       likedBy: [],
       dislikedBy: [],
     },
@@ -329,7 +329,7 @@ export const posts = [
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique",
     likes: {
-      likeCount: 0,
+      likeCount: 72,
       likedBy: [],
       dislikedBy: [],
     },
@@ -344,7 +344,7 @@ export const posts = [
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique",
     likes: {
-      likeCount: 0,
+      likeCount: 25,
       likedBy: [],
       dislikedBy: [],
     },
@@ -376,7 +376,7 @@ export const posts = [
     _id: uuid(),
     content: "At vero eos et accusamus et iusto odio dignissimos",
     likes: {
-      likeCount: 0,
+      likeCount: 43,
       likedBy: [],
       dislikedBy: [],
     },
@@ -409,7 +409,7 @@ export const posts = [
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores",
     likes: {
-      likeCount: 0,
+      likeCount: 67,
       likedBy: [],
       dislikedBy: [],
     },
@@ -441,7 +441,7 @@ export const posts = [
     _id: uuid(),
     content: "At vero eos et accusamus et iusto odio dignissimos ducimus qui",
     likes: {
-      likeCount: 0,
+      likeCount: 78,
       likedBy: [],
       dislikedBy: [],
     },
@@ -474,7 +474,7 @@ export const posts = [
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique",
     likes: {
-      likeCount: 0,
+      likeCount: 20,
       likedBy: [],
       dislikedBy: [],
     },
@@ -507,7 +507,7 @@ export const posts = [
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti",
     likes: {
-      likeCount: 0,
+      likeCount: 10,
       likedBy: [],
       dislikedBy: [],
     },

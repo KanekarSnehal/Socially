@@ -24,7 +24,7 @@ export const SinglePost = ({ post }) => {
   const { allUsers } = useSelector((state) => state.user);
   const { bookmarks } = useSelector((state) => state.post);
   const [newComment, setNewComment] = useState("");
-  const domNode = useOutsideClick(() => setShowOptions(false));
+  let domNode = useOutsideClick(() => setShowOptions(false));
 
   const {
     _id,
@@ -146,7 +146,7 @@ export const SinglePost = ({ post }) => {
           </div>
           <div className="flex items-center">
             <img
-              className="h-8 rounded-full cursor-pointer"
+              className="h-8 w-8 rounded-full cursor-pointer"
               src={user?.profileImage}
               onClick={handleNavigate}
             />

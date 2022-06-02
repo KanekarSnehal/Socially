@@ -18,7 +18,7 @@ export const Comment = ({ postId, comment }) => {
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const domNode = useOutsideClick(() => setShowOptions(false));
+  let domNode = useOutsideClick(() => setShowOptions(false));
   const currentUser =
     allUsers &&
     allUsers.find((currentUser) => currentUser.username === comment.username);

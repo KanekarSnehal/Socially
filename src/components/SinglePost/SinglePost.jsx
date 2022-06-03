@@ -6,6 +6,8 @@ import { FiEdit } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { RiBookmarkFill, RiBookmarkLine } from "react-icons/ri";
+import { useOutsideClick } from "../../hooks";
+
 import {
   deleteUserPost,
   likeDislikeUserPost,
@@ -22,6 +24,8 @@ export const SinglePost = ({ post }) => {
   const { allUsers } = useSelector((state) => state.user);
   const { bookmarks } = useSelector((state) => state.post);
   const [newComment, setNewComment] = useState("");
+  let domNode = useOutsideClick(() => setShowOptions(false));
+
   const {
     _id,
     content,
@@ -78,6 +82,7 @@ export const SinglePost = ({ post }) => {
             </div>
             {user.username === username && (
               <div
+                ref={domNode}
                 className="duration-200 py-1 px-1 hover:bg-gray-200 rounded-full cursor-pointer relative"
                 onClick={() => setShowOptions(!showOptions)}
               >
@@ -141,7 +146,7 @@ export const SinglePost = ({ post }) => {
           </div>
           <div className="flex items-center">
             <img
-              className="h-8 rounded-full cursor-pointer"
+              className="h-8 w-8 rounded-full cursor-pointer"
               src={user?.profileImage}
               onClick={handleNavigate}
             />

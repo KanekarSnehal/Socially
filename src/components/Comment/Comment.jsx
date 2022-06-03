@@ -10,6 +10,7 @@ import {
   setModalType,
   setAdditionalData,
 } from "../../app/features/modalSlice";
+import { useOutsideClick } from "../../hooks";
 
 export const Comment = ({ postId, comment }) => {
   const [showOptions, setShowOptions] = useState(false);
@@ -17,7 +18,7 @@ export const Comment = ({ postId, comment }) => {
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  let domNode = useOutsideClick(() => setShowOptions(false));
   const currentUser =
     allUsers &&
     allUsers.find((currentUser) => currentUser.username === comment.username);
@@ -46,6 +47,7 @@ export const Comment = ({ postId, comment }) => {
             </span>
             {comment?.username === user?.username && (
               <div
+                ref={domNode}
                 className="duration-200 py-1 px-1 hover:bg-gray-200 rounded-full cursor-pointer relative"
                 onClick={() => setShowOptions(!showOptions)}
               >

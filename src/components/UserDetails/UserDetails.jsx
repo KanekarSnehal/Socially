@@ -9,7 +9,7 @@ export const UserDetails = ({ user, showEditButton, postLength }) => {
     <>
       <div className=" bg-white px-6 py-4 gap-4 border rounded-lg shadow-lg  flex h-fit sm:gap-6 mb-4">
         <img
-          className="sm:h-20 h-14 rounded-full cursor-pointer sm:w-20"
+          className="sm:h-20 h-16 w-20 rounded-full cursor-pointer sm:w-20 bg-secondary-100"
           src={user.profileImage}
         />
         <div className="flex flex-col w-full gap-2">

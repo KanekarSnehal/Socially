@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { PostList } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 
 export const Explore = () => {
-  const dispatch = useDispatch();
   const { allPosts } = useSelector((state) => state.post);
   const { user } = useSelector((state) => state.auth);
 

@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { UserDetails, PostList } from "../../components";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUserPosts } from "../../app/features/postSlice";
-import { fetchUserDetails } from "../../app/features/userSlice";
 import { editUserDetails } from "../../app/features/authSlice";
 
 export const UserProfile = () => {

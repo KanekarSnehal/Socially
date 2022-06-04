@@ -4,12 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserPosts } from "../../app/features/postSlice";
 import { fetchUserDetails } from "../../app/features/userSlice";
 import { useParams } from "react-router-dom";
+import loader from "../../assets/loader.svg";
 
 export const Profile = () => {
   const dispatch = useDispatch();
   const { username } = useParams();
   const { userPosts } = useSelector((state) => state.post);
-  const { userDetails, allUsers } = useSelector((state) => state.user);
+  const { userDetails, allUsers, userDetailsStatus } = useSelector(
+    (state) => state.user
+  );
   const { allPosts } = useSelector((state) => state.post);
 
   useEffect(() => {
@@ -26,8 +29,13 @@ export const Profile = () => {
       {userDetails?.username && (
         <>
           <UserDetails user={userDetails} postLength={userPosts.length} />
-          <PostList posts={userPosts} />
+          {userPosts && <PostList posts={userPosts} />}
         </>
+      )}
+      {userDetailsStatus === "pending" && (
+        <div className="flex justify-center items-center">
+          <img src={loader} className="w-36 h-36" alt="loader" />
+        </div>
       )}
     </div>
   );

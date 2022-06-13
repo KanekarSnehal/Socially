@@ -10,3 +10,4 @@ export { ModalInput } from "./ModalInput/ModalInput";
 export { UserDetails } from "./UserDetails/UserDetails";
 export { FollowButton } from "./FollowButton/FollowButton";
 export { ProfileModal } from "./ProfileModal/ProfileModal";
+export { SearchUser } from "./SearchUser/SearchUser";

@@ -2,12 +2,14 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { followUnfollowUser } from "../../app/features/userSlice";
 import { useNavigate } from "react-router-dom";
+import { SearchUser } from "../index";
 
 export const FollowMenuBar = () => {
   const { user } = useSelector((state) => state.auth);
   const { allUsers } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const followData = allUsers
     ?.filter((currentUser) => currentUser.username !== user.username)
     .filter(
@@ -24,8 +26,9 @@ export const FollowMenuBar = () => {
   };
 
   return (
-    <div className="py-4 w-1/3 hidden lg:flex sticky top-8 height-90vh">
-      <div className="ml-4 mr-10 bg-white px-6 py-4 my-6 border rounded-lg shadow-lg  flex h-fit flex-col gap-6 w-full">
+    <div className="py-4 w-1/3 hidden lg:flex lg:flex-col sticky top-8 height-90vh">
+      <SearchUser />
+      <div className="ml-4 mr-10 bg-white px-6 py-4 my-6 border rounded-lg shadow-lg  flex h-fit flex-col gap-6">
         <p className="font-semibold">Who to follow</p>
         {followData.length === 0 ? (
           <div className="text-center">No Suggestions</div>

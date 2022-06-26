@@ -27,7 +27,7 @@ export const users = [
     fullName: "Snehal Kanekar",
     username: "snehalkanekar",
     password: "snehal@123",
-    bio: "this is my bio",
+    bio: "Frontend Developer🚀",
     profileImage:
       "https://res.cloudinary.com/dflebgpde/image/upload/v1656265515/socially/avatar1_kq4wi5.jpg",
     createdAt: formatDate(),

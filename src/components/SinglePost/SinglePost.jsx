@@ -67,8 +67,12 @@ export const SinglePost = ({ post }) => {
       <div className=" bg-white px-6 py-4 border rounded-lg shadow-lg  flex h-fit flex-col ">
         <div className="flex mb-2">
           <img
-            className="h-12 rounded-full cursor-pointer"
-            src={currentUserInfo?.profileImage}
+            className="h-12 w-12 object-contain rounded-full cursor-pointer"
+            src={
+              user?.username === currentUserInfo?.username
+                ? user?.profileImage
+                : currentUserInfo?.profileImage
+            }
             onClick={handleNavigate}
           />
           <div className="flex items-center justify-between w-full ml-2">

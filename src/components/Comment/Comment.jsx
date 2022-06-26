@@ -33,8 +33,12 @@ export const Comment = ({ postId, comment }) => {
     <>
       <div className="mt-4 flex">
         <img
-          className="h-8 rounded-full cursor-pointer"
-          src={currentUser?.profileImage}
+          className="h-8 w-8 object-cover rounded-full cursor-pointer"
+          src={
+            user?.username === currentUser?.username
+              ? user?.profileImage
+              : currentUser?.profileImage
+          }
           onClick={handleNavigate}
         />
         <div className="ml-2 px-3 py-2 bg-slate-200 grow rounded-xl">

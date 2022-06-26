@@ -87,7 +87,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "shrutikapoor08",
-    createdAt: new Date("07/04/2010"),
+    createdAt: new Date("06/04/2021"),
     updatedAt: formatDate(),
     comments: [
       {

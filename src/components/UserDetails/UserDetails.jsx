@@ -45,6 +45,7 @@ export const UserDetails = ({ user, showEditButton, postLength }) => {
               className="decoration-1
             text-blue-400
             break-all"
+              target="_blank"
             >
               {user.link}
             </a>

@@ -26,7 +26,7 @@ export const SideMenuBar = () => {
           <p className=" text-3xl sm:ml-3.5">Socially</p>
         </header>
         <div className="flex flex-col items-start mt-4 pl-14 text-xl xl:pl-20 pr-4 text-secondary-300">
-          <NavLink to="/home" className={isActiveClass}>
+          <NavLink to="/" className={isActiveClass}>
             <ImHome className="mr-3.5" />
             <span>Home</span>
           </NavLink>

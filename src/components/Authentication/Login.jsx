@@ -13,7 +13,7 @@ export const Login = () => {
     if (loginData.username && loginData.password !== "") {
       const response = await dispatch(loginUser(loginData));
       if (response?.payload.encodedToken) {
-        navigate("/home");
+        navigate("/");
       }
     }
   };

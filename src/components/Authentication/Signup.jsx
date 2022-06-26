@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { BiShow } from "react-icons/bi";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signupUser } from "../../app/features/authSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const Signup = () => {
   const [signupData, setSignupData] = useState({
@@ -16,9 +16,17 @@ export const Signup = () => {
     setSignupData({ ...signupData, [e.target.name]: e.target.value });
   };
   const signupHandler = async () => {
-    const response = await dispatch(signupUser(signupData));
-    if (response?.payload.encodedToken) {
-      navigate("/home");
+    if (
+      signupData.fullName !== "" &&
+      signupData.userName !== "" &&
+      signupData.password !== ""
+    ) {
+      const response = await dispatch(signupUser(signupData));
+      if (response?.payload.encodedToken) {
+        navigate("/home");
+      }
+    } else {
+      toast.error(`Please enter valid details`);
     }
   };
 

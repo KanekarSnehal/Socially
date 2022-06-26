@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { loginUser } from "../../app/features/authSlice";
 import { useNavigate } from "react-router-dom";
 import { RiLoaderFill } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 export const Login = () => {
   const [loginData, setLoginData] = useState({ username: "", password: "" });
@@ -15,6 +16,8 @@ export const Login = () => {
       if (response?.payload.encodedToken) {
         navigate("/");
       }
+    } else {
+      toast.error(`Please enter valid details`);
     }
   };
 

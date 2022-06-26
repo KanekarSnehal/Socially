@@ -27,7 +27,7 @@ export const Signup = () => {
       <p className="mt-4 ml-2">Full Name</p>
       <input
         type="text"
-        class="form-input w-full rounded-full"
+        className="form-input w-full rounded-full"
         placeholder="Enter your full name"
         name="fullName"
         value={signupData.fullName}
@@ -37,7 +37,7 @@ export const Signup = () => {
       <p className="mt-4 ml-2">Username</p>
       <input
         type="text"
-        class="form-input w-full rounded-full"
+        className="form-input w-full rounded-full"
         placeholder="Enter your username"
         name="userName"
         value={signupData.userName}
@@ -46,7 +46,7 @@ export const Signup = () => {
       <p className="mt-4 ml-2">Password</p>
       <input
         type="password"
-        class="form-input w-full rounded-full"
+        className="form-input w-full rounded-full"
         placeholder="Enter your password"
         name="password"
         value={signupData.password}

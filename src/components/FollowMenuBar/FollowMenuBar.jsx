@@ -17,7 +17,8 @@ export const FollowMenuBar = () => {
         !user.following.find(
           (followingUser) => followingUser._id === currentUser._id
         )
-    );
+    )
+    .slice(0, 4);
 
   const handleNavigate = (username) => {
     user.username === username
@@ -55,7 +56,7 @@ export const FollowMenuBar = () => {
                 </div>
               </div>
               <button
-                className="font-semibold cursor-pointer text-white bg-secondary-300 rounded-2xl px-2 py-1 hover:bg-secondary-400"
+                className="font-semibold cursor-pointer text-white bg-secondary-300 rounded-2xl px-2 py-1 hover:bg-secondary-400 flex"
                 onClick={() =>
                   dispatch(
                     followUnfollowUser({
@@ -66,7 +67,8 @@ export const FollowMenuBar = () => {
                   )
                 }
               >
-                + Follow
+                <span>+ </span>
+                <p>Follow</p>
               </button>
             </div>
           ))

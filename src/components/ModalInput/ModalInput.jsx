@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { RiSendPlaneFill } from "react-icons/ri";
+import { BsEmojiSmileFill } from "react-icons/bs";
 import reactDom from "react-dom";
 import { openModal, closeModal } from "../../app/features/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,12 +10,14 @@ import {
   editUserComment,
   editUserPost,
 } from "../../app/features/postSlice";
+import Picker from "emoji-picker-react";
 
 export const ModalInput = () => {
   const { modalOpenStatus, modalContent, modalType, additiondalData } =
     useSelector((state) => state.modal);
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -41,9 +44,13 @@ export const ModalInput = () => {
     dispatch(closeModal());
   };
 
+  const onEmojiClick = (event, emojiObject) => {
+    setInput((prevInput) => prevInput + emojiObject.emoji);
+  };
+
   return reactDom.createPortal(
     <div
-      className={`fixed w-full h-full inset-0 backdrop-brightness-90 z-20 flex justify-center items-center ${
+      className={`fixed w-full h-full inset-0 backdrop-brightness-90 z-20 flex justify-center items-start ${
         modalOpenStatus ? "block" : "hidden"
       }`}
       onClick={() => {
@@ -52,7 +59,7 @@ export const ModalInput = () => {
       }}
     >
       <div
-        className="bg-primary-100 px-4 py-4 rounded-xl w-2/3 md:w-1/2 lg:w-4/12 flex flex-col"
+        className="bg-primary-100 px-4 py-4 rounded-xl w-2/3 md:w-1/2 lg:w-4/12 flex flex-col mt-24"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center ">
@@ -68,27 +75,42 @@ export const ModalInput = () => {
           </div>
         </div>
         <textarea
-          className="rounded-md px-4 py-2 w-full mt-2 bg-white border-none h-60"
+          className="rounded-md px-4 py-2 w-full mt-2 bg-white border-none h-40"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="What's Happening?"
         />
-
-        {modalType === "POST" ? (
+        <div className="flex px-2 text-secondary-300 justify-center items-center mt-2.5 relative">
           <button
-            className="px-2 py-1 bg-secondary-300 text-white flex justify-between hover:bg-secondary-400 mt-3 rounded-lg cursor-pointer flex items-center ml-auto"
-            onClick={postHandler}
+            className="text-xl cursor-pointer"
+            onClick={() => setShowEmojiPicker((prevVal) => !prevVal)}
           >
-            POST <RiSendPlaneFill className="ml-2" />
+            <BsEmojiSmileFill />
           </button>
-        ) : (
-          <button
-            className="px-2 py-1 bg-secondary-300 text-white flex justify-between hover:bg-secondary-400 mt-3 rounded-lg cursor-pointer flex items-center ml-auto"
-            onClick={updateHanlder}
-          >
-            UPDATE
-          </button>
-        )}
+          {showEmojiPicker && (
+            <div className="z-10 drop-shadow-lg absolute top-8 -left-10">
+              <Picker
+                onEmojiClick={onEmojiClick}
+                pickerStyle={{ height: "18rem" }}
+              />
+            </div>
+          )}
+          {modalType === "POST" ? (
+            <button
+              className="px-2 py-1 bg-secondary-300 text-white flex justify-between hover:bg-secondary-400 rounded-lg cursor-pointer flex items-center ml-auto"
+              onClick={postHandler}
+            >
+              POST <RiSendPlaneFill className="ml-2" />
+            </button>
+          ) : (
+            <button
+              className="px-2 py-1 bg-secondary-300 text-white flex justify-between hover:bg-secondary-400 rounded-lg cursor-pointer flex items-center ml-auto"
+              onClick={updateHanlder}
+            >
+              UPDATE
+            </button>
+          )}
+        </div>
       </div>
     </div>,
     document.getElementById("modal-root")

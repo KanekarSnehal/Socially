@@ -23,7 +23,7 @@ export const Signup = () => {
     ) {
       const response = await dispatch(signupUser(signupData));
       if (response?.payload.encodedToken) {
-        navigate("/home");
+        navigate("/");
       }
     } else {
       toast.error(`Please enter valid details`);

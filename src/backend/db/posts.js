@@ -11,13 +11,15 @@ export const posts = [
     _id: uuid(),
     content:
       "If you dream big and work towards it daily, there's nothing that can ever stop you✨",
+    image:
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1656284595/socially/satyajeet-mazumdar-fCsmYKhiHGo-unsplash_ttwtva.jpg",
     likes: {
       likeCount: 4,
       likedBy: [],
       dislikedBy: [],
     },
     username: "snehalkanekar",
-    createdAt: new Date("04/05/2022"),
+    createdAt: formatDate(),
     updatedAt: formatDate(),
     comments: [
       {
@@ -253,7 +255,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "snehalkanekar",
-    createdAt: formatDate(),
+    createdAt: new Date("05/15/2022"),
     updatedAt: formatDate(),
     comments: [
       {

@@ -12,7 +12,7 @@ import {
 } from "../../app/features/modalSlice";
 import { useOutsideClick } from "../../hooks";
 
-export const Comment = ({ postId, comment }) => {
+export const Comment = ({ postId, comment, image }) => {
   const [showOptions, setShowOptions] = useState(false);
   const { allUsers } = useSelector((state) => state.user);
   const { user } = useSelector((state) => state.auth);
@@ -88,6 +88,7 @@ export const Comment = ({ postId, comment }) => {
             )}
           </div>
           <p className="ext-sm text-gray-500 break-all">{comment.content}</p>
+          {image && <img src={image} className="h-30 w-30 mt-4" />}
         </div>
       </div>
     </>

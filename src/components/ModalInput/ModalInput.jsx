@@ -27,9 +27,9 @@ export const ModalInput = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (modalContent) {
+    if (modalContent && modalContent?.content) {
       setInput(modalContent.content);
-      setImage(modalContent.postImage);
+      setImage(modalContent.image);
     }
   }, [modalContent]);
 
@@ -88,6 +88,7 @@ export const ModalInput = () => {
       })
     );
     setInput("");
+    setImage(null);
     dispatch(closeModal());
   };
 
@@ -103,6 +104,7 @@ export const ModalInput = () => {
       onClick={() => {
         dispatch(closeModal());
         setInput("");
+        setImage(null);
       }}
     >
       <div
@@ -116,6 +118,7 @@ export const ModalInput = () => {
             onClick={() => {
               dispatch(closeModal());
               setInput("");
+              setImage(null);
             }}
           >
             <GrClose />

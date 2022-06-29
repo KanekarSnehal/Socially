@@ -122,13 +122,15 @@ export const posts = [
       running a 1-week cohort to fix this mostly for myself
       
       starting this saturday, join us to publish one piece in 1 week with feedback from like-minded peers`,
+    image:
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1656525620/socially/57USIB_w_z5qtce.png",
     likes: {
       likeCount: 49,
       likedBy: [],
       dislikedBy: [],
     },
     username: "SwapAgarwal",
-    createdAt: formatDate(),
+    createdAt: new Date("06/23/2022"),
     updatedAt: formatDate(),
     comments: [
       {
@@ -168,6 +170,8 @@ export const posts = [
     content: `The hardest part of writing is getting started. ✍️
     To tackle this problem, neoG is running a neoBlogging marathon so students help each other write better, do in-depth research & review each other’s blogs. 
     Join in, Join in folks!`,
+    image:
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1656527224/socially/FSaEypKaQAk6-JG_jwfdco.jpg",
     likes: {
       likeCount: 36,
       likedBy: [],
@@ -208,7 +212,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "tanaypratap",
-    createdAt: formatDate(),
+    createdAt: new Date("06/24/2022"),
     updatedAt: formatDate(),
     comments: [
       {
@@ -258,15 +262,6 @@ export const posts = [
     createdAt: new Date("05/15/2022"),
     updatedAt: formatDate(),
     comments: [
-      {
-        _id: uuid(),
-        username: "JavaScript",
-        content: "Interesting",
-        votes: {
-          upvotedBy: [],
-          downvotedBy: [],
-        },
-      },
       {
         _id: uuid(),
         username: "shrutikapoor08",
@@ -329,9 +324,11 @@ export const posts = [
   {
     _id: uuid(),
     content:
-      "What's the most intuitive/useful/beautifully-functioning API you've used recently?",
+      "Destructuring is powerful and this makes that clear! A beautiful gradient to boot 🙂",
+    image:
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1656526868/socially/FPeYFGAaIAAPKE2_gyefsv.jpg",
     likes: {
-      likeCount: 561,
+      likeCount: 221,
       likedBy: [],
       dislikedBy: [],
     },
@@ -342,7 +339,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "akshaymarch7",
-        content: "Twilio API. Used for messaging and voice calling within app.",
+        content: "Love this feature ❤",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -351,7 +348,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "snehalkanekar",
-        content: "OpenAI",
+        content: "Extremely useful tip!! Thanks",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -361,8 +358,9 @@ export const posts = [
   },
   {
     _id: uuid(),
-    content:
-      "Don't be pushed around by the fears in your mind. Rather led by the dreams in your heart❤️✨",
+    content: "Ganpati Bappa Morya🙏🌺❤️✨",
+    image:
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1656527769/socially/sonika-agarwal-iGWXUXGY1YQ-unsplash_cuhmh9.jpg",
     likes: {
       likeCount: 172,
       likedBy: [],
@@ -399,29 +397,31 @@ export const posts = [
   },
   {
     _id: uuid(),
-    content:
-      "With time, I'm internalizing I should write more as content scales well in the long run.",
+    content: "Shifting to physical books this year!",
+    image:
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1656525771/socially/FIlKWE5VkAE3t7E_v8ctmu.jpg",
     likes: {
       likeCount: 60,
       likedBy: [],
       dislikedBy: [],
     },
     username: "SwapAgarwal",
-    createdAt: formatDate(),
+    createdAt: new Date("01/08/2022"),
     updatedAt: formatDate(),
     comments: [],
   },
   {
     _id: uuid(),
-    content:
-      "Who's out there living their best nomadic life using an iPad for dev/gaming while on the road? What's your setup? Inquiring minds want to know 👀",
+    content: "Happy Pride from San Francisco! Love is the way we win 🌈💖🥂✊🏽",
+    image:
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1656527371/socially/FWIySbAUcAETrlQ_gpxz7v.jpg",
     likes: {
-      likeCount: 67,
+      likeCount: 31,
       likedBy: [],
       dislikedBy: [],
     },
     username: "AnjanaVakil",
-    createdAt: formatDate(),
+    createdAt: new Date("06/26/2022"),
     updatedAt: formatDate(),
     comments: [],
   },
@@ -461,21 +461,27 @@ export const posts = [
   },
   {
     _id: uuid(),
-    content:
-      "Some of my friends make insane amount of money, but are still broke by the end of the month. 🙂",
+    content: `Success is no accident.
+      It is hard work, perseverance, learning, studying, and most of all, the sacrifice of your comfort zone.
+      
+      "A ship is always safe at the shore, but that is not what it is built for." - Albert Einstein
+      
+      Life begins at the end of our comfort zone!`,
+    image:
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1656526329/socially/FQl9IUeXIAA_cG9_b4uurg.jpg",
     likes: {
-      likeCount: 174,
+      likeCount: 2689,
       likedBy: [],
       dislikedBy: [],
     },
     username: "akshaymarch7",
-    createdAt: new Date("06/25/2022"),
+    createdAt: new Date("04/18/2022"),
     updatedAt: formatDate(),
     comments: [
       {
         _id: uuid(),
         username: "snehalkanekar",
-        content: "Interesting",
+        content: "Correct..",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -484,7 +490,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "SwapAgarwal",
-        content: `They must read "Rich Dad Poor Dad" to learn more on how to manage their personal finances`,
+        content: `True, it's happening nowadays`,
         votes: {
           upvotedBy: [],
           downvotedBy: [],

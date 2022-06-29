@@ -115,7 +115,7 @@ export const SinglePost = ({ post }) => {
         </div>
         <div className="flex flex-col">
           <p className="break-all text-gray-600">{content}</p>
-          {image && <img src={image} className="h-30 w-30 mt-4" />}
+          {image && <img src={image} className="h-[30rem] w-full mt-4" />}
           <div className="flex my-3 text-secondary-300 sm:text-lg text-sm">
             <div
               className="flex items-center justify-center sm:mr-8 mr-4 cursor-pointer"

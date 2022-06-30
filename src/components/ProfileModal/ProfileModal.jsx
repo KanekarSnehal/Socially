@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { editUserDetails } from "../../app/features/authSlice";
 import { BsFillCameraFill } from "react-icons/bs";
 import { RiLoaderFill } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 export const ProfileModal = ({ profileModal, setProfileModal }) => {
   const { user } = useSelector((state) => state.auth);
@@ -35,7 +36,7 @@ export const ProfileModal = ({ profileModal, setProfileModal }) => {
         setImageLoader(false);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(`Some went wrong, Please try again, ${error}`);
       });
   };
 

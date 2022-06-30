@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { loginUser } from "../../app/features/authSlice";
 import { useNavigate } from "react-router-dom";
 import { RiLoaderFill } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 export const Login = () => {
   const [loginData, setLoginData] = useState({ username: "", password: "" });
@@ -13,8 +14,10 @@ export const Login = () => {
     if (loginData.username && loginData.password !== "") {
       const response = await dispatch(loginUser(loginData));
       if (response?.payload.encodedToken) {
-        navigate("/home");
+        navigate("/");
       }
+    } else {
+      toast.error(`Please enter valid details`);
     }
   };
 
@@ -23,7 +26,7 @@ export const Login = () => {
       <p className="my-2 ml-2">Username</p>
       <input
         type="text"
-        class="form-input w-full rounded-full"
+        className="form-input w-full rounded-full"
         placeholder="Enter your username"
         value={loginData.username}
         onChange={(e) =>
@@ -36,7 +39,7 @@ export const Login = () => {
       <p className="mt-4 ml-2">Password</p>
       <input
         type="password"
-        class="form-input w-full rounded-full"
+        className="form-input w-full rounded-full"
         placeholder="Enter your password"
         value={loginData.password}
         onChange={(e) =>

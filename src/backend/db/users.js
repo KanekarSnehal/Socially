@@ -8,61 +8,69 @@ import { formatDate } from "../utils/authUtils";
 export const users = [
   {
     _id: uuid(),
-    fullName: "Adarsh Balika",
-    username: "adarshbalika",
-    password: "adarshBalika123",
-    bio: "this is my bio",
+    fullName: "neog.camp",
+    username: "neogcamp",
+    password: "neogcamp",
+    bio: `India’s best web devs are built here | Taught by 
+    @tanaypratap
+     | Job oriented | Project focused learning | 
+    @reactjs
+     at core`,
     profileImage:
-      "https://res.cloudinary.com/dflebgpde/image/upload/v1652528175/socially/hacker_obpy2s.png",
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1656264614/socially/glWYSyvy_400x400_disnox.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    link: "https://adarshbalika.netlify.app",
+    link: "https://neog.camp/",
   },
   {
     _id: uuid(),
     fullName: "Snehal Kanekar",
     username: "snehalkanekar",
     password: "snehal@123",
-    bio: "this is my bio",
+    bio: "Frontend Developer🚀",
     profileImage:
-      "https://res.cloudinary.com/dflebgpde/image/upload/v1652866709/socially/IMG_20190404_181111-min_tjvnvy.jpg",
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1656265515/socially/avatar1_kq4wi5.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     link: "https://snehalcodes.hashnode.dev/",
   },
   {
     _id: uuid(),
-    fullName: "Vedant Kanekar",
-    username: "vedantkanekar",
-    password: "vednat@123",
-    bio: "this is my bio",
+    fullName: "Akshay Saini",
+    username: "akshaymarch7",
+    password: "@akshaymarch7",
+    bio: "Founder, NamasteDev | Teacher - YouTuber",
     profileImage:
-      "https://res.cloudinary.com/dflebgpde/image/upload/v1652867848/socially/profile_1_tpbsuk.png",
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1656252090/socially/XD94Q6D1_400x400_vcrxlu.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    link: "",
+    link: "https://appopener.com/yt/lfu59c3v6",
   },
 
   {
     _id: uuid(),
-    fullName: "Sukanya Sen",
-    username: "sukanyasen",
-    password: "sukanya@123",
-    bio: "this is my bio",
+    fullName: "Anjana Vakil",
+    username: "AnjanaVakil",
+    password: "AnjanaVakil@123",
+    bio: "Engineering & teaching & learning✨ Software Engineer & Developer Advocate✨ ",
     profileImage:
-      "https://res.cloudinary.com/dflebgpde/image/upload/v1652867247/socially/profile_hcosib.png",
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1656255813/socially/l2B8K-Vn_400x400_tiswgw.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     link: "",
   },
   {
     _id: uuid(),
-    fullName: "Prabhav Sharma",
-    username: "prabhavsharma",
-    password: "prabhav@123",
-    bio: "this is my bio",
+    fullName: "Tanay Pratap",
+    username: "tanaypratap",
+    password: "tanaypratap@123",
+    bio: `Founder 
+    @invactHQ
+     | x 
+    @Microsoft
+     | Fixing education | Mentored 100+ students to first tech job | Tweets: Tech, Education, Career, Metaverse and Startups.`,
     profileImage:
-      "https://res.cloudinary.com/dflebgpde/image/upload/v1652867848/socially/profile_1_tpbsuk.png",
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1652868138/socially/5_2plEJW_400x400_ujfjhu.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     link: "",
@@ -82,38 +90,46 @@ export const users = [
 
   {
     _id: uuid(),
-    fullName: "Sharath Nair",
-    username: "sharathnair",
-    password: "sharath@123",
-    bio: "this is my bio",
+    fullName: "Swapnil Agarwal 🚀",
+    username: "SwapAgarwal",
+    password: "SwapAgarwal@123",
+    bio: `🧪 CEO 
+    @roc8HQ
+    ; fixing tech hiring
+    🚧 Lifelong learner, playing long-term games
+    📚 Runs 
+    @ReademyCafe
+    
+    🏖 MCU∙Adler∙AEW∙Ghibli∙INFP
+    ✈️ Prev: Amazon SDE, Meesho PM`,
     profileImage:
-      "https://res.cloudinary.com/dflebgpde/image/upload/v1652867848/socially/profile_1_tpbsuk.png",
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1656264050/socially/uzn7oAUG_400x400_1_z76etp.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    link: "",
+    link: "https://swapnilagarwal.com/",
   },
   {
     _id: uuid(),
-    fullName: "Prathmesh Jagtap",
-    username: "prathmesh",
-    password: "prathmesh@123",
-    bio: "this is my bio",
+    fullName: "JavaScript",
+    username: "JavaScript",
+    password: "JavaScript@123",
+    bio: "JavaScript conversations from Oracle DevRel ",
     profileImage:
-      "https://res.cloudinary.com/dflebgpde/image/upload/v1652867848/socially/profile_1_tpbsuk.png",
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1656262931/socially/1Ked07gR_400x400_mgkibx.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    link: "",
+    link: "https://developer.oracle.com/team/",
   },
   {
     _id: uuid(),
-    fullName: "Leena Kanekar",
-    username: "leena123",
-    password: "leena@123",
-    bio: "this is my bio",
+    fullName: "Shruti Kapoor",
+    username: "shrutikapoor08",
+    password: "shrutikapoor08",
+    bio: "Follow for JavaScript, React, GraphQL✨Tech Speaker✨DevJoke👸✨",
     profileImage:
-      "https://res.cloudinary.com/dflebgpde/image/upload/v1652867247/socially/profile_hcosib.png",
+      "https://res.cloudinary.com/dflebgpde/image/upload/v1656263509/socially/ruhsrBQT_400x400_f90jyt.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    link: "",
+    link: "https://discord.com/invite/rgqyH75Saf",
   },
 ];

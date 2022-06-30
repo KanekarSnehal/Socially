@@ -24,7 +24,7 @@ export const UserDetails = ({ user, showEditButton, postLength }) => {
             </div>
             {showEditButton ? (
               <div
-                className="font-semibold cursor-pointer text-gray-500 border-gray-400 border-2 rounded-md px-2 py-1  h-8 hover:bg-secondary-200"
+                className="font-semibold cursor-pointer text-gray-500 border-gray-400 border-2 rounded-md px-2 py-1  h-8 hover:bg-secondary-200 justify-center flex items-center"
                 onClick={() => setProfileModal(true)}
               >
                 Edit
@@ -45,6 +45,7 @@ export const UserDetails = ({ user, showEditButton, postLength }) => {
               className="decoration-1
             text-blue-400
             break-all"
+              target="_blank"
             >
               {user.link}
             </a>

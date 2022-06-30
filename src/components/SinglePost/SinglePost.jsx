@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IoMdMore } from "react-icons/io";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { Comment } from "../index";
@@ -29,6 +29,7 @@ export const SinglePost = ({ post }) => {
   const {
     _id,
     content,
+    image,
     likes: { likeCount, likedBy },
     username,
     comments,
@@ -67,8 +68,12 @@ export const SinglePost = ({ post }) => {
       <div className=" bg-white px-6 py-4 border rounded-lg shadow-lg  flex h-fit flex-col ">
         <div className="flex mb-2">
           <img
-            className="h-12 rounded-full cursor-pointer"
-            src={currentUserInfo?.profileImage}
+            className="h-12 w-12 object-contain rounded-full cursor-pointer"
+            src={
+              user?.username === currentUserInfo?.username
+                ? user?.profileImage
+                : currentUserInfo?.profileImage
+            }
             onClick={handleNavigate}
           />
           <div className="flex items-center justify-between w-full ml-2">
@@ -110,6 +115,7 @@ export const SinglePost = ({ post }) => {
         </div>
         <div className="flex flex-col">
           <p className="break-all text-gray-600">{content}</p>
+          {image && <img src={image} className="h-[30rem] w-full mt-4" />}
           <div className="flex my-3 text-secondary-300 sm:text-lg text-sm">
             <div
               className="flex items-center justify-center sm:mr-8 mr-4 cursor-pointer"

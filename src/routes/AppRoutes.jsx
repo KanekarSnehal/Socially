@@ -18,17 +18,17 @@ export const ProtectedRoute = () => {
   return token ? (
     <Outlet />
   ) : (
-    <Navigate to={"/"} state={{ from: location?.pathname }} replace />
+    <Navigate to={"/auth"} state={{ from: location?.pathname }} replace />
   );
 };
 
 export const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<AuthPage />} />
+      <Route path="/auth" element={<AuthPage />} />
       <Route element={<ProtectedRoute />}>
         <Route
-          path="/home"
+          path="/"
           element={
             <MainContainer>
               <Home />

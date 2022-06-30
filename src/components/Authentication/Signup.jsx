@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { BiShow } from "react-icons/bi";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signupUser } from "../../app/features/authSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const Signup = () => {
   const [signupData, setSignupData] = useState({
@@ -16,9 +16,17 @@ export const Signup = () => {
     setSignupData({ ...signupData, [e.target.name]: e.target.value });
   };
   const signupHandler = async () => {
-    const response = await dispatch(signupUser(signupData));
-    if (response?.payload.encodedToken) {
-      navigate("/home");
+    if (
+      signupData.fullName !== "" &&
+      signupData.userName !== "" &&
+      signupData.password !== ""
+    ) {
+      const response = await dispatch(signupUser(signupData));
+      if (response?.payload.encodedToken) {
+        navigate("/");
+      }
+    } else {
+      toast.error(`Please enter valid details`);
     }
   };
 
@@ -27,7 +35,7 @@ export const Signup = () => {
       <p className="mt-4 ml-2">Full Name</p>
       <input
         type="text"
-        class="form-input w-full rounded-full"
+        className="form-input w-full rounded-full"
         placeholder="Enter your full name"
         name="fullName"
         value={signupData.fullName}
@@ -37,7 +45,7 @@ export const Signup = () => {
       <p className="mt-4 ml-2">Username</p>
       <input
         type="text"
-        class="form-input w-full rounded-full"
+        className="form-input w-full rounded-full"
         placeholder="Enter your username"
         name="userName"
         value={signupData.userName}
@@ -46,7 +54,7 @@ export const Signup = () => {
       <p className="mt-4 ml-2">Password</p>
       <input
         type="password"
-        class="form-input w-full rounded-full"
+        className="form-input w-full rounded-full"
         placeholder="Enter your password"
         name="password"
         value={signupData.password}

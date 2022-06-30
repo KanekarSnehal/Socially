@@ -12,7 +12,7 @@ import {
 } from "../../app/features/modalSlice";
 import { useOutsideClick } from "../../hooks";
 
-export const Comment = ({ postId, comment }) => {
+export const Comment = ({ postId, comment, image }) => {
   const [showOptions, setShowOptions] = useState(false);
   const { allUsers } = useSelector((state) => state.user);
   const { user } = useSelector((state) => state.auth);
@@ -33,8 +33,12 @@ export const Comment = ({ postId, comment }) => {
     <>
       <div className="mt-4 flex">
         <img
-          className="h-8 rounded-full cursor-pointer"
-          src={currentUser?.profileImage}
+          className="h-8 w-8 object-cover rounded-full cursor-pointer"
+          src={
+            user?.username === currentUser?.username
+              ? user?.profileImage
+              : currentUser?.profileImage
+          }
           onClick={handleNavigate}
         />
         <div className="ml-2 px-3 py-2 bg-slate-200 grow rounded-xl">
@@ -84,6 +88,7 @@ export const Comment = ({ postId, comment }) => {
             )}
           </div>
           <p className="ext-sm text-gray-500 break-all">{comment.content}</p>
+          {image && <img src={image} className="h-30 w-30 mt-4" />}
         </div>
       </div>
     </>

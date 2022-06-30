@@ -66,8 +66,8 @@ const authSlice = createSlice({
         state.loading = false;
         state.token = action.payload.encodedToken;
         state.user = action.payload.foundUser;
-        localStorage.setItem("token", state.token);
-        localStorage.setItem("user", JSON.stringify(state.user));
+        localStorage.setItem("token", action.payload.encodedToken);
+        localStorage.setItem("user", JSON.stringify(action.payload.foundUser));
         toast.success(`Welcome back! ${state.user.fullName}`, { icon: "👋" });
       })
       .addCase(loginUser.rejected, (state, action) => {
@@ -82,8 +82,11 @@ const authSlice = createSlice({
         state.loading = false;
         state.token = action.payload.encodedToken;
         state.user = action.payload.createdUser;
-        localStorage.setItem("token", state.token);
-        localStorage.setItem("user", state.user);
+        localStorage.setItem("token", action.payload.encodedToken);
+        localStorage.setItem(
+          "user",
+          JSON.stringify(action.payload.createdUser)
+        );
         toast.success(
           `Account created Successfully, Welcome ${state.user.fullName}`
         );

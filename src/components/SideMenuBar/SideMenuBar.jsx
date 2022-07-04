@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 import { logout } from "../../app/features/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { openModal, closeModal } from "../../app/features/modalSlice";
+import { openModal, setModalType } from "../../app/features/modalSlice";
 
 export const SideMenuBar = () => {
   const isActiveClass = ({ isActive }) =>
@@ -54,7 +54,10 @@ export const SideMenuBar = () => {
           </div>
           <button
             className="mt-12 bg-secondary-300 py-2 px-4 w-full rounded-2xl text-white hover:bg-secondary-400 flex items-center justify-center"
-            onClick={() => dispatch(openModal())}
+            onClick={() => {
+              dispatch(openModal());
+              dispatch(setModalType("POST"));
+            }}
           >
             POST <RiSendPlaneFill className="ml-2" />
           </button>

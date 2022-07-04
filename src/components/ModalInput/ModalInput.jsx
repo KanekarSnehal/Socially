@@ -22,22 +22,22 @@ export const ModalInput = () => {
   const [input, setInput] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const { user } = useSelector((state) => state.auth);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState({ value: null, type: "" });
   const domRef = useOutsideClick(() => setShowEmojiPicker(false));
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (modalContent && modalContent?.content) {
       setInput(modalContent.content);
-      setImage(modalContent.image);
+      setImage({ value: modalContent.image, type: "old" });
     }
   }, [modalContent]);
 
   const postHandler = async () => {
     setLoading(true);
-    if (image) {
+    if (image.value) {
       const data = new FormData();
-      data.append("file", image);
+      data.append("file", image.value);
       data.append("upload_preset", process.env.REACT_APP_CLOUDINARY_API_KEY);
       const requestOptions = {
         method: "POST",
@@ -68,14 +68,14 @@ export const ModalInput = () => {
             editUserPost({
               ...modalContent,
               content: input,
-              image: image,
+              image: image.value,
             })
           )
-        : dispatch(addUserPost({ content: input, image: image }));
+        : dispatch(addUserPost({ content: input, image: image.value }));
     }
     setLoading(false);
     setInput("");
-    setImage(null);
+    setImage({ value: null, type: "" });
     dispatch(closeModal());
   };
 
@@ -88,7 +88,7 @@ export const ModalInput = () => {
       })
     );
     setInput("");
-    setImage(null);
+    setImage({ value: null, type: "" });
     dispatch(closeModal());
   };
 
@@ -104,7 +104,7 @@ export const ModalInput = () => {
       onClick={() => {
         dispatch(closeModal());
         setInput("");
-        setImage(null);
+        setImage({ value: null, type: "" });
       }}
     >
       <div
@@ -118,7 +118,7 @@ export const ModalInput = () => {
             onClick={() => {
               dispatch(closeModal());
               setInput("");
-              setImage(null);
+              setImage({ value: null, type: "" });
             }}
           >
             <GrClose />
@@ -130,17 +130,19 @@ export const ModalInput = () => {
           onChange={(e) => setInput(e.target.value)}
           placeholder="What's Happening?"
         />
-        {image && (
+        {image.value && (
           <div className="relative mt-4 h-40 w-40">
             <TiDelete
               className="absolute top-0 right-0 text-2xl text-secondary-400 cursor-pointer"
-              onClick={() => setImage(null)}
+              onClick={() => setImage({ value: null, type: "" })}
             />
             <img
               src={
                 modalContent?.image
-                  ? image
-                  : image && URL.createObjectURL(image)
+                  ? image.type === "new"
+                    ? URL.createObjectURL(image?.value)
+                    : image?.value
+                  : image.value && URL.createObjectURL(image?.value)
               }
               className="h-40 w-40"
             />
@@ -171,7 +173,9 @@ export const ModalInput = () => {
                 type="file"
                 className="absolute left-0 -top-3 cursor-pointer w-6 h-6 opacity-0"
                 accept="image/jpeg, image/png, image/jpg"
-                onChange={(e) => setImage(e.target.files[0])}
+                onChange={(e) =>
+                  setImage({ value: e.target.files[0], type: "new" })
+                }
               ></input>
             </div>
           )}

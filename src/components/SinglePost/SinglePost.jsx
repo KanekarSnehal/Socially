@@ -14,7 +14,7 @@ import {
   bookmarkUnbookmarkUserPost,
   addUserComment,
 } from "../../app/features/postSlice";
-import { openModal } from "../../app/features/modalSlice";
+import { openModal, setModalType } from "../../app/features/modalSlice";
 import { useNavigate } from "react-router-dom";
 
 export const SinglePost = ({ post }) => {
@@ -96,7 +96,10 @@ export const SinglePost = ({ post }) => {
                   <ul className="absolute z-10 bg-gray-100 px-2.5 py-1.5 border rounded-lg top-7 right-2 font-semibold text-secondary-300">
                     <li
                       className="flex items-center"
-                      onClick={() => dispatch(openModal(post))}
+                      onClick={() => {
+                        dispatch(openModal(post));
+                        dispatch(setModalType("POST"));
+                      }}
                     >
                       <FiEdit className="mr-2" />
                       edit
@@ -115,7 +118,9 @@ export const SinglePost = ({ post }) => {
         </div>
         <div className="flex flex-col">
           <p className="break-all text-gray-600">{content}</p>
-          {image && <img src={image} className="h-[30rem] w-full mt-4" />}
+          {image && (
+            <img src={image} className="h-[30rem] w-full mt-4 object-contain" />
+          )}
           <div className="flex my-3 text-secondary-300 sm:text-lg text-sm">
             <div
               className="flex items-center justify-center sm:mr-8 mr-4 cursor-pointer"

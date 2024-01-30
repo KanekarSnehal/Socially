@@ -38,7 +38,7 @@ export const SideMenuBar = () => {
             <BsBookmarkFill className="mr-3.5" />
             <span>Bookmark</span>
           </NavLink>
-          <NavLink className={isActiveClass} to="/user-profile">
+          <NavLink className={isActiveClass} to={`/profile/${user.user_name}`}>
             <MdAccountCircle className="mr-3.5" />
             <span>Profile</span>
           </NavLink>

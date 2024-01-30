@@ -10,6 +10,7 @@ import {
   addUserPost,
   editUserComment,
   editUserPost,
+  fetchAllPosts
 } from "../../app/features/postSlice";
 import Picker from "emoji-picker-react";
 import { useOutsideClick } from "../../hooks";
@@ -27,66 +28,70 @@ export const ModalInput = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (modalContent && modalContent?.content) {
+    if(modalType == 'COMMENT') {
       setInput(modalContent.content);
+    } else if (modalContent && modalContent?.description) {
+      setInput(modalContent.description);
       setImage({ value: modalContent.image, type: "old" });
     }
   }, [modalContent]);
 
   const postHandler = async () => {
     setLoading(true);
-    if (image.value) {
-      const data = new FormData();
-      data.append("file", image.value);
-      data.append("upload_preset", process.env.REACT_APP_CLOUDINARY_API_KEY);
-      const requestOptions = {
-        method: "POST",
-        body: data,
-      };
-      await fetch(
-        "https://api.cloudinary.com/v1_1/dflebgpde/image/upload",
-        requestOptions
-      )
-        .then((response) => response.json())
-        .then((json) => {
-          modalContent
-            ? dispatch(
-                editUserPost({
-                  ...modalContent,
-                  content: input,
-                  image: json.secure_url,
-                })
-              )
-            : dispatch(addUserPost({ content: input, image: json.secure_url }));
-        })
-        .catch((error) => {
-          toast.error(`Some went wrong, Please try again, ${error}`);
-        });
-    } else {
-      modalContent
-        ? dispatch(
-            editUserPost({
-              ...modalContent,
-              content: input,
-              image: image.value,
-            })
-          )
-        : dispatch(addUserPost({ content: input, image: image.value }));
+    const data = new FormData();
+    data.append("file", image.value);
+    const response  = await modalContent
+      ? await dispatch(
+          editUserPost({
+           data: 
+           {
+              action: 'update',
+              data: [
+                {
+                  description: input,
+                  image: image.value ? data : null
+                }
+              ]
+           },
+           id: modalContent.id
+          })
+        )
+      : await dispatch(addUserPost(
+        { 
+          action: 'create', 
+          data: [
+            {
+              description: input, 
+              image: image.value ? data : null
+            }
+          ] 
+        }
+        ));
+    if(response?.payload?.status == 'success') {
+      await dispatch(fetchAllPosts());
+      setLoading(false);
+      setInput("");
+      setImage({ value: null, type: "" });
+      dispatch(closeModal());
     }
-    setLoading(false);
-    setInput("");
-    setImage({ value: null, type: "" });
-    dispatch(closeModal());
   };
 
-  const updateHanlder = () => {
-    dispatch(
+  const updateHanlder = async () => {
+    await dispatch(
       editUserComment({
         postId: additiondalData,
-        commentId: modalContent._id,
-        commentData: input,
+        commentId: modalContent.id,
+        commentData: {
+          action: 'update',
+          data: [
+            { 
+              content: input  
+            }
+          ]
+        },
       })
     );
+    await dispatch(fetchAllPosts());
     setInput("");
     setImage({ value: null, type: "" });
     dispatch(closeModal());

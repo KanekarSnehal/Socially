@@ -36,10 +36,10 @@ export const signupUser = createAsyncThunk(
 
 export const editUserDetails = createAsyncThunk(
   "auth/editUserData",
-  async (userDetails, { rejectWithValue }) => {
+  async ({ userName, userDetails }, { rejectWithValue }) => {
     try {
-      const { data } = await editUserData(userDetails);
-      return data.user;
+      const { data } = await editUserData(userName, userDetails);
+      return data;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -51,7 +51,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      state.token = "";
+      state.token = false;
       state.user = null;
       localStorage.removeItem("token");
       localStorage.removeItem("user");
@@ -64,11 +64,11 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.token = action.payload.encodedToken;
-        state.user = action.payload.foundUser;
-        localStorage.setItem("token", action.payload.encodedToken);
-        localStorage.setItem("user", JSON.stringify(action.payload.foundUser));
-        toast.success(`Welcome back! ${state.user.fullName}`, { icon: "👋" });
+        state.token = true;
+        state.user = action.payload.data;
+        localStorage.setItem("token", true);
+        localStorage.setItem("user", JSON.stringify(action.payload.data));
+        toast.success(`Welcome back! ${state.user.full_name}`, { icon: "👋" });
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
@@ -80,15 +80,8 @@ const authSlice = createSlice({
       })
       .addCase(signupUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.token = action.payload.encodedToken;
-        state.user = action.payload.createdUser;
-        localStorage.setItem("token", action.payload.encodedToken);
-        localStorage.setItem(
-          "user",
-          JSON.stringify(action.payload.createdUser)
-        );
         toast.success(
-          `Account created Successfully, Welcome ${state.user.fullName}`
+          `Account created Successfully, Please login!`
         );
       })
       .addCase(signupUser.rejected, (state, action) => {
@@ -101,12 +94,9 @@ const authSlice = createSlice({
       })
       .addCase(editUserDetails.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
-        localStorage.setItem("user", JSON.stringify(state.user));
       })
       .addCase(editUserDetails.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
         toast.error(`Some went wrong, Please try again, ${state.error}`);
       });
   },

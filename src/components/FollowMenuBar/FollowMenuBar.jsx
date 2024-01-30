@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { followUnfollowUser } from "../../app/features/userSlice";
+import { fetchAllUsers, followUnfollowUser } from "../../app/features/userSlice";
 import { useNavigate } from "react-router-dom";
 import { SearchUser } from "../index";
 
@@ -10,15 +10,11 @@ export const FollowMenuBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const followData = allUsers
-    ?.filter((currentUser) => currentUser.username !== user.username)
-    .filter(
-      (currentUser) =>
-        !user.following.find(
-          (followingUser) => followingUser._id === currentUser._id
-        )
-    )
-    .slice(0, 4);
+  useEffect(() => {
+    dispatch(fetchAllUsers());
+  }, [])
+
+  const followData = allUsers.slice(0, 4);
 
   const handleNavigate = (username) => {
     user.username === username
@@ -37,34 +33,36 @@ export const FollowMenuBar = () => {
           followData.map((user) => (
             <div
               className="flex gap-6 justify-between items-start"
-              key={user._id}
+              key={user.id}
             >
               <div className="flex gap-4">
                 <img
-                  className="rounded-full self-center cursor-pointer h-10"
-                  src={user.profileImage}
-                  onClick={() => handleNavigate(user.username)}
+                  className="rounded-full self-center cursor-pointer h-10 w-12"
+                  src={user.profile_image}
+                  onClick={() => handleNavigate(user.user_name)}
                 />
                 <div className="flex flex-col">
                   <p
                     className="font-semibold cursor-pointer"
-                    onClick={() => handleNavigate(user.username)}
+                    onClick={() => handleNavigate(user.user_name)}
                   >
-                    {user.fullName}
+                    {user.full_name}
                   </p>
-                  <p className="text-xs text-gray-400">@{user.username}</p>
+                  <p className="text-xs text-gray-400">@{user.user_name}</p>
                 </div>
               </div>
               <button
                 className="font-semibold cursor-pointer text-white bg-secondary-300 rounded-2xl px-2 py-1 hover:bg-secondary-400 flex"
-                onClick={() =>
-                  dispatch(
+                onClick={async () =>{
+                  await dispatch(
                     followUnfollowUser({
-                      userId: user._id,
+                      userId: user.id,
                       isFollowing: false,
                       dispatch,
                     })
                   )
+                  await dispatch(fetchAllUsers());
+                }
                 }
               >
                 <span>+ </span>

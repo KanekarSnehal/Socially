@@ -51,7 +51,7 @@ export const PostList = ({ posts }) => {
       </div>
       {lazyLoadedPosts &&
         lazyLoadedPosts.map((post) => (
-          <SinglePost key={post._id} post={post} />
+          <SinglePost key={post.id} post={post} />
         ))}
 
       <div ref={loadingRef} className="flex justify-center">

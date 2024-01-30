@@ -6,9 +6,9 @@ import { editUserDetails } from "../../app/features/authSlice";
 import { BsFillCameraFill } from "react-icons/bs";
 import { RiLoaderFill } from "react-icons/ri";
 import { toast } from "react-toastify";
+import { fetchUserDetails } from "../../app/features/userSlice";
 
-export const ProfileModal = ({ profileModal, setProfileModal }) => {
-  const { user } = useSelector((state) => state.auth);
+export const ProfileModal = ({ user, setProfileModal }) => {
   const [userData, setUserData] = useState(user);
   const [imageLoader, setImageLoader] = useState(false);
   const dispatch = useDispatch();
@@ -72,7 +72,7 @@ export const ProfileModal = ({ profileModal, setProfileModal }) => {
               <div className="relative">
                 <img
                   className="h-16 w-16 rounded-full"
-                  src={userData.profileImage}
+                  src={userData.profile_image}
                 />
                 <BsFillCameraFill className="absolute left-10 top-10 cursor-pointer text-secondary-400 text-2xl bg-gray-300 py-0.5 px-1 rounded-full" />
                 <input
@@ -103,9 +103,9 @@ export const ProfileModal = ({ profileModal, setProfileModal }) => {
             </p>
             <input
               type="text"
-              name="link"
+              name="website"
               className="rounded-md px-4 py-2 w-full mt-2 bg-white border-none"
-              value={userData.link}
+              value={userData.website}
               onChange={handleChange}
             />
           </div>
@@ -114,8 +114,23 @@ export const ProfileModal = ({ profileModal, setProfileModal }) => {
             className={`px-2 py-1 bg-secondary-300 text-white flex justify-between hover:bg-secondary-400 mt-3 rounded-lg cursor-pointer flex items-center ml-auto ${
               imageLoader ? "cursor-not-allowed" : ""
             }`}
-            onClick={() => {
-              dispatch(editUserDetails(userData));
+            onClick={async () => {
+              await dispatch(editUserDetails(
+                {
+                  userName: userData.user_name, 
+                  userDetails: {
+                    action: 'update',
+                    data: [
+                      {
+                        profile_image: userData.profile_image,
+                        bio: userData.bio,
+                        website: userData.website
+                      }
+                  ]
+                  }
+                }
+              ));
+              await dispatch(fetchUserDetails(userData.user_name));
               setProfileModal(false);
             }}
             disabled={imageLoader}

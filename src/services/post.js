@@ -1,33 +1,41 @@
-import axios from "axios";
+import axiosInstance from "./index";
 import { postUrl, config } from "../utils/index";
 
 // get all posts
-export const getAllPosts = () => axios.get(postUrl);
+export const getAllPosts = () => axiosInstance.get(`${postUrl}/following`);
 
 // get single post by postId
-export const getPostByPostId = (postId) => axios.get(`${postUrl}/${postId}`);
+export const getPostByPostId = (postId) => axiosInstance.get(`${postUrl}/${postId}`);
 
 // get all posts by username
 export const getPostsByUserName = (username) =>
-  axios.get(`${postUrl}/user/${username}`);
+  axiosInstance.get(`${postUrl}/user/${username}`);
 
 //   add new post to user's db
 export const addPost = (postData) => {
-  return axios.post(postUrl, { postData }, config());
+  return axiosInstance.post(postUrl, postData);
 };
 
 // delete a post from user's db
 export const deletePost = (postId) =>
-  axios.delete(`${postUrl}/${postId}`, config());
+  axiosInstance.delete(`${postUrl}/${postId}`);
 
 // edit a post from user's db
-export const editPost = (postData) =>
-  axios.post(`${postUrl}/edit/${postData._id}`, { postData }, config());
+export const editPost = (postData, postId) =>
+  axiosInstance.post(`${postUrl}/${postId}/edit`, postData);
 
 // like a post of user
 export const likePost = (postId) =>
-  axios.post(`${postUrl}/like/${postId}`, {}, config());
+  axiosInstance.post(`${postUrl}/${postId}/like`, {});
 
 // dislike a post of user
 export const dislikePost = (postId) =>
-  axios.post(`${postUrl}/dislike/${postId}`, {}, config());
+  axiosInstance.delete(`${postUrl}/${postId}/dislike`, {});
+
+// bookmark a post of user
+export const bookmarkPost = (postId) =>
+  axiosInstance.post(`${postUrl}/${postId}/bookmark`, {});
+
+// unbookmark a post of user
+export const unBookmarkPost = (postId) =>
+  axiosInstance.delete(`${postUrl}/${postId}/unbookmark`, {});

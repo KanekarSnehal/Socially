@@ -7,7 +7,7 @@ export const FollowButton = ({ userDetails }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { followUserStatus } = useSelector((state) => state.user);
-  const isFollowing = userDetails.followers.some(
+  const isFollowing = userDetails?.followers?.some(
     (currentUser) => currentUser.username === user.username
   );
 
@@ -17,7 +17,7 @@ export const FollowButton = ({ userDetails }) => {
       onClick={() =>
         dispatch(
           followUnfollowUser({
-            userId: userDetails._id,
+            userId: userDetails.id,
             isFollowing: isFollowing,
             dispatch,
           })
@@ -36,7 +36,7 @@ export const FollowButton = ({ userDetails }) => {
       onClick={() =>
         dispatch(
           followUnfollowUser({
-            userId: userDetails._id,
+            userId: userDetails.id,
             isFollowing: isFollowing,
             dispatch,
           })

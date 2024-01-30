@@ -10,16 +10,16 @@ export const UserDetails = ({ user, showEditButton, postLength }) => {
       <div className=" bg-white px-6 py-4 gap-4 border rounded-lg shadow-lg  flex h-fit sm:gap-6 mb-4">
         <img
           className="sm:h-20 h-16 w-20 rounded-full cursor-pointer sm:w-20 bg-secondary-100"
-          src={user.profileImage}
+          src={user.profile_image}
         />
         <div className="flex flex-col w-full gap-2">
           <div className="flex justify-between">
             <div>
               <p className="md:text-2xl text-lg font-semibold cursor-pointer text-secondary-300">
-                {user.fullName}
+                {user.full_name}
               </p>
               <p className="text-sm text-gray-400 cursor-pointer">
-                @{user.username}
+                @{user.user_name}
               </p>
             </div>
             {showEditButton ? (
@@ -36,8 +36,8 @@ export const UserDetails = ({ user, showEditButton, postLength }) => {
           <p className="text-gray-500 font-semibold break-all">{user.bio}</p>
           <div className="font-semibold text-gray-500 gap-8 flex ">
             <span>{postLength} Posts</span>
-            <span>{user.followers.length} Followers</span>
-            <span>{user.following.length} Following</span>
+            <span>{user?.followers?.length || 0} Followers</span>
+            <span>{user?.following?.length || 0} Following</span>
           </div>
           <div className="font-semibold  ">
             <a
@@ -47,13 +47,13 @@ export const UserDetails = ({ user, showEditButton, postLength }) => {
             break-all"
               target="_blank"
             >
-              {user.link}
+              {user.website}
             </a>
           </div>
         </div>
       </div>
       {profileModal && (
-        <ProfileModal
+        <ProfileModal user={user}
           profileModal={profileModal}
           setProfileModal={setProfileModal}
         />

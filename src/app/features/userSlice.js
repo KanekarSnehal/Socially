@@ -1,9 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
-  followUser,
   getAllUsers,
   getUserByUsername,
-  unFollowUser,
+  followUnFollowUser,
 } from "../../services/user";
 import { toast } from "react-toastify";
 import { editUserDetails } from "./authSlice";
@@ -21,10 +20,10 @@ const initialState = {
 
 export const fetchAllUsers = createAsyncThunk(
   "post/getAllUsers",
-  async (_, { rejectWithValue }) => {
+  async (searchText, { rejectWithValue }) => {
     try {
-      const { data } = await getAllUsers();
-      return data.users;
+      const { data } = await getAllUsers(searchText);
+      return data;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -36,7 +35,7 @@ export const fetchUserDetails = createAsyncThunk(
   async (username, { rejectWithValue }) => {
     try {
       const { data } = await getUserByUsername(username);
-      return data.user;
+      return data;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -47,9 +46,7 @@ export const followUnfollowUser = createAsyncThunk(
   "post/followUnfollowUser",
   async ({ userId, isFollowing, dispatch }, { rejectWithValue }) => {
     try {
-      const { data } = isFollowing
-        ? await unFollowUser(userId)
-        : await followUser(userId);
+      const { data } = await followUnFollowUser(userId, isFollowing);
       dispatch(editUserDetails(data.user));
       return data;
     } catch (e) {
@@ -69,11 +66,10 @@ const userSlice = createSlice({
       })
       .addCase(fetchAllUsers.fulfilled, (state, action) => {
         state.allUserStatus = "fulfilled";
-        state.allUsers = action.payload;
+        state.allUsers = action.payload.data;
       })
       .addCase(fetchAllUsers.rejected, (state, action) => {
         state.allUserStatus = "rejected";
-        state.allUsersError = action.payload;
         toast.error(
           `Some went wrong, Please try again, ${state.allUsersError}`
         );
@@ -83,11 +79,10 @@ const userSlice = createSlice({
       })
       .addCase(fetchUserDetails.fulfilled, (state, action) => {
         state.userDetailsStatus = "fulfilled";
-        state.userDetails = action.payload;
+        state.userDetails = action.payload.data;
       })
       .addCase(fetchUserDetails.rejected, (state, action) => {
         state.userDetailsStatus = "rejected";
-        state.userDetailsError = action.payload;
         toast.error(
           `Some went wrong, Please try again, ${state.userDetailsError}`
         );
@@ -96,19 +91,11 @@ const userSlice = createSlice({
         state.followUserStatus = "pending";
       })
       .addCase(followUnfollowUser.fulfilled, (state, action) => {
-        const { user, followUser } = action.payload;
         state.followUserStatus = "fulfilled";
-        state.allUsers = state.allUsers.map((currentUser) =>
-          currentUser.username === user.username
-            ? { ...user }
-            : currentUser.username === followUser.username
-            ? { ...followUser }
-            : currentUser
-        );
+        toast.success('Followed successfully!');
       })
       .addCase(followUnfollowUser.rejected, (state, action) => {
         state.followUserStatus = "rejected";
-        state.followUserError = action.payload;
         toast.error(
           `Some went wrong, Please try again, ${state.followUserError}`
         );

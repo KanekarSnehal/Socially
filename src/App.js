@@ -11,14 +11,6 @@ function App() {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    if (token) {
-      dispatch(fetchAllPosts());
-      dispatch(fetchAllUsers());
-      dispatch(fetchAllBookmarks());
-    }
-  }, [dispatch, token]);
-
   return (
     <div className="App">
       <ToastContainer autoClose={2000} theme="colored" />

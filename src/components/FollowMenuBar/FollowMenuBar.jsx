@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchAllUsers, followUnfollowUser } from "../../app/features/userSlice";
 import { useNavigate } from "react-router-dom";
 import { SearchUser } from "../index";
+import { fetchAllPosts } from "../../app/features/postSlice";
 
 export const FollowMenuBar = () => {
   const { user } = useSelector((state) => state.auth);
@@ -62,6 +63,7 @@ export const FollowMenuBar = () => {
                     })
                   )
                   await dispatch(fetchAllUsers());
+                  await dispatch(fetchAllPosts())
                 }
                 }
               >

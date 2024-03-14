@@ -13,15 +13,11 @@ export const Bookmark = () => {
     dispatch(fetchAllBookmarks());
   }, [allPosts]);
 
-  const bookmarkPost = allPosts?.filter((post) =>
-    bookmarks.find((bookmarkPost) => bookmarkPost._id === post._id)
-  );
-
   return (
     <div className="lg:w-1/2 w-full px-4 py-2 relative">
       <p className="font-semibold text-2xl text-secondary-300">Bookmark</p>
-      {bookmarkPost.length !== 0 ? (
-        <PostList posts={bookmarkPost} />
+      {bookmarks.length !== 0 ? (
+        <PostList posts={bookmarks} />
       ) : bookmarkStatus === "pending" ? (
         <div className="flex justify-center items-center">
           <img src={loader} className="w-36 h-36" alt="loader" />

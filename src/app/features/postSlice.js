@@ -8,7 +8,8 @@ import {
   likePost,
   dislikePost,
   bookmarkPost,
-  unBookmarkPost
+  unBookmarkPost,
+  getAllBookmarkedPosts
 } from "../../services/post";
 import {
 
@@ -66,8 +67,8 @@ export const fetchAllBookmarks = createAsyncThunk(
   "post/getBookmarks",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await getBookmarks();
-      return data.bookmarks;
+      const { data } = await getAllBookmarkedPosts();
+      return data;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -277,7 +278,7 @@ const postSlice = createSlice({
       })
       .addCase(fetchAllBookmarks.fulfilled, (state, action) => {
         state.bookmarkStatus = "fulfilled";
-        state.bookmarks = action.payload;
+        state.bookmarks = action.payload.data;
       })
       .addCase(fetchAllBookmarks.rejected, (state) => {
         state.bookmarkStatus = "rejected";

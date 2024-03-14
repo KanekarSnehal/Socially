@@ -34,8 +34,11 @@ export const dislikePost = (postId) =>
 
 // bookmark a post of user
 export const bookmarkPost = (postId) =>
-  axiosInstance.post(`${postUrl}/${postId}/bookmark`, {});
+  axiosInstance.post(`${postUrl}/${postId}/bookmarks`, {});
 
 // unbookmark a post of user
 export const unBookmarkPost = (postId) =>
-  axiosInstance.delete(`${postUrl}/${postId}/unbookmark`, {});
+  axiosInstance.delete(`${postUrl}/${postId}/unbookmarks`, {});
+
+// get all bookmarks of user
+export const getAllBookmarkedPosts = () => axiosInstance.get(`${postUrl}/bookmarks`);

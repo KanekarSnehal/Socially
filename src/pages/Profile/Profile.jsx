@@ -13,6 +13,7 @@ export const Profile = () => {
   const { userDetails, allUsers, userDetailsStatus } = useSelector(
     (state) => state.user
   );
+  const { user } = useSelector((state) => state.auth);
   const { allPosts } = useSelector((state) => state.post);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export const Profile = () => {
       <p className="font-semibold text-2xl text-secondary-300 mb-8">Profile</p>
       {userDetails?.user_name && (
         <>
-          <UserDetails user={userDetails} postLength={userPosts.length} showEditButton />
+          <UserDetails user={userDetails} postLength={userPosts.length} showEditButton={ user.user_name == userDetails.user_name } />
           {userPosts && <PostList posts={userPosts} />}
         </>
       )}

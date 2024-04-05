@@ -30,10 +30,10 @@ export const SideMenuBar = () => {
             <ImHome className="mr-3.5" />
             <span>Home</span>
           </NavLink>
-          <NavLink className={isActiveClass} to="/explore">
+          {/* <NavLink className={isActiveClass} to="/explore">
             <MdExplore className="mr-3.5" />
             <span>Explore</span>
-          </NavLink>
+          </NavLink> */}
           <NavLink className={isActiveClass} to="/bookmark">
             <BsBookmarkFill className="mr-3.5" />
             <span>Bookmark</span>

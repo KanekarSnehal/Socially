@@ -36,7 +36,7 @@ export const UserDetails = ({ user, showEditButton, postLength }) => {
           <p className="text-gray-500 font-semibold break-all">{user.bio}</p>
           <div className="font-semibold text-gray-500 gap-8 flex ">
             <span>{postLength} Posts</span>
-            <span>{user?.followers?.length || 0} Followers</span>
+            <span>{user?.follower?.length || 0} Followers</span>
             <span>{user?.following?.length || 0} Following</span>
           </div>
           <div className="font-semibold  ">

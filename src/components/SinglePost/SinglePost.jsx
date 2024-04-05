@@ -35,7 +35,8 @@ export const SinglePost = ({ post }) => {
     is_liked,
     like_count,
     is_bookmarked,
-    bookmark_count
+    bookmark_count,
+    image
   } = post;
   const navigate = useNavigate();
 
@@ -120,9 +121,9 @@ export const SinglePost = ({ post }) => {
         </div>
         <div className="flex flex-col">
           <p className="break-all text-gray-600">{description}</p>
-          {/* {image && (
+          {image && (
             <img src={image} className="h-[30rem] w-full mt-4 object-contain" />
-          )} */}
+          )}
           <div className="flex my-3 text-secondary-300 sm:text-lg text-sm">
             <div
               className="flex items-center justify-center sm:mr-8 mr-4 cursor-pointer"

@@ -32,7 +32,7 @@ export const ProfileModal = ({ user, setProfileModal }) => {
     )
       .then((response) => response.json())
       .then((json) => {
-        setUserData({ ...userData, profileImage: json.secure_url });
+        setUserData({ ...userData, profile_image: json.secure_url });
         setImageLoader(false);
       })
       .catch((error) => {
@@ -78,7 +78,7 @@ export const ProfileModal = ({ user, setProfileModal }) => {
                 <input
                   type="file"
                   className="absolute left-10 top-10 cursor-pointer w-6 h-6 opacity-0"
-                  accept="image/jpeg, image/png, image/jpg"
+                  accept="image/jpeg, image/png, image/jpg, image/png"
                   onChange={(e) => handleImageChange(e.target.files[0])}
                 ></input>
               </div>

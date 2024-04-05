@@ -36,10 +36,29 @@ export const ModalInput = () => {
     }
   }, [modalContent]);
 
+  const handleImageChange = async (image, type) => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", process.env.REACT_APP_CLOUDINARY_API_KEY);
+    const requestOptions = {
+      method: "POST",
+      body: data,
+    };
+    await fetch(
+      "https://api.cloudinary.com/v1_1/dflebgpde/image/upload",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((json) => {
+        setImage({ value: json.secure_url, type });
+      })
+      .catch((error) => {
+        toast.error(`Some went wrong, Please try again, ${error}`);
+      });
+  };
+
   const postHandler = async () => {
     setLoading(true);
-    const data = new FormData();
-    data.append("file", image.value);
     const response  = await modalContent
       ? await dispatch(
           editUserPost({
@@ -49,7 +68,7 @@ export const ModalInput = () => {
               data: [
                 {
                   description: input,
-                  image: image.value ? data : null
+                  image: image.value
                 }
               ]
            },
@@ -62,7 +81,7 @@ export const ModalInput = () => {
           data: [
             {
               description: input, 
-              image: image.value ? data : null
+              image: image.value
             }
           ] 
         }
@@ -117,7 +136,7 @@ export const ModalInput = () => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center ">
-          <img className="h-8 rounded-full" src={user.profileImage} />
+          <img className="h-8 rounded-full" src={user.profile_image} />
           <div
             className="duration-200 py-1 px-1 hover:bg-gray-400 rounded-full cursor-pointer"
             onClick={() => {
@@ -145,9 +164,9 @@ export const ModalInput = () => {
               src={
                 modalContent?.image
                   ? image.type === "new"
-                    ? URL.createObjectURL(image?.value)
+                    ? image?.value
                     : image?.value
-                  : image.value && URL.createObjectURL(image?.value)
+                  : image.value && image?.value
               }
               className="h-40 w-40"
             />
@@ -179,7 +198,7 @@ export const ModalInput = () => {
                 className="absolute left-0 -top-3 cursor-pointer w-6 h-6 opacity-0"
                 accept="image/jpeg, image/png, image/jpg"
                 onChange={(e) =>
-                  setImage({ value: e.target.files[0], type: "new" })
+                  handleImageChange(e.target.files[0], "new" )
                 }
               ></input>
             </div>

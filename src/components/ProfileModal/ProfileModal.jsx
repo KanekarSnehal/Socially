@@ -7,6 +7,7 @@ import { BsFillCameraFill } from "react-icons/bs";
 import { RiLoaderFill } from "react-icons/ri";
 import { toast } from "react-toastify";
 import { fetchUserDetails } from "../../app/features/userSlice";
+import { fetchUserPosts } from "../../app/features/postSlice";
 
 export const ProfileModal = ({ user, setProfileModal }) => {
   const [userData, setUserData] = useState(user);
@@ -131,6 +132,7 @@ export const ProfileModal = ({ user, setProfileModal }) => {
                 }
               ));
               await dispatch(fetchUserDetails(userData.user_name));
+              await dispatch(fetchUserPosts(userData.user_name));
               setProfileModal(false);
             }}
             disabled={imageLoader}

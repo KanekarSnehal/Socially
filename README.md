@@ -30,7 +30,9 @@ Checkout the live demo [here](https://socially-media-gules.vercel.app/)
 - React Router
 - Tailwind CSS
 - Redux Tooklkit
-- MockBee
+- ExpressJS
+- MySQL
+- Sequelize
 
 ---
 
@@ -40,8 +42,6 @@ Checkout the live demo [here](https://socially-media-gules.vercel.app/)
   - User can see posts of people he/she follows
 - Follow Menu Bar
   - Sugeestions of users to follow
-- Explore Page
-  - User can see posts of other people
 - Bookmark Page
   - User can view his bookmark posts
 - User Profile Page
@@ -50,8 +50,6 @@ Checkout the live demo [here](https://socially-media-gules.vercel.app/)
   - User can see other peoples profile page
   - Check their posts
   - Follow/Unfollow user
-- Filters for Sorting Posts
-  - Sort post by latest, oldest and trending
 - Posts
   - User can create post with photos and emoji
   - User can update his/her post
@@ -70,6 +68,3 @@ Checkout the live demo [here](https://socially-media-gules.vercel.app/)
 # Screens
 
 <img src="src/assets/auth-page.png" width="100%" title="Auth_Page">
-<img src="src/assets/home-page.png" width="100%" title="Home_Page">
-<img src="src/assets/explore-page.png" width="100%" title="Explore_Page">
-<img src="src/assets/user-profile-page.png" width="100%" title="User_Profile_Page">

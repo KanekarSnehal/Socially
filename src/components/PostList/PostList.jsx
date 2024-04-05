@@ -18,12 +18,12 @@ export const PostList = ({ posts }) => {
   return (
     <div className="flex flex-col gap-5 ">
       <div className="flex flex-col self-end mr-4 relative" ref={domNode}>
-        <span
+        {/* <span
           className="flex justify-center bg-white rounded-lg shadow-lg items-center gap-1 px-6 py-1 cursor-pointer text-secondary-300 font-semibold gap-2"
           onClick={() => setShowSortOptions(!showSortOptions)}
         >
           <IoMdFunnel /> Sort
-        </span>
+        </span> */}
         <ul
           className={`bg-white rounded-lg px-1.5 py-1 text-center absolute top-10 z-10 right-0 w-full shadow-xl cursor-pointer text-secondary-300 font-semibold ${
             showSortOptions ? "block" : "hidden"
@@ -51,7 +51,7 @@ export const PostList = ({ posts }) => {
       </div>
       {lazyLoadedPosts &&
         lazyLoadedPosts.map((post) => (
-          <SinglePost key={post._id} post={post} />
+          <SinglePost key={post.id} post={post} />
         ))}
 
       <div ref={loadingRef} className="flex justify-center">

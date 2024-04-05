@@ -22,11 +22,11 @@ export const SearchUser = () => {
   const searchQuery = () =>
     allUsers.filter(
       (user) =>
-        user.username.toLowerCase().includes(searchText.toLowerCase()) ||
-        user.fullName.toLowerCase().includes(searchText.toLowerCase())
+        user.user_name.toLowerCase().includes(searchText.toLowerCase()) ||
+        user.full_name.toLowerCase().includes(searchText.toLowerCase())
     );
 
-  useEffect(() => {
+  useEffect(async () => {
     setLoading(true);
     const timerId = setTimeout(() => {
       if (searchText) setSearchResult(searchQuery);
@@ -94,18 +94,18 @@ export const SearchUser = () => {
               searchResult.map((user) => (
                 <div className="flex gap-4" key={user._id}>
                   <img
-                    className="rounded-full self-center cursor-pointer h-10"
-                    src={user.profileImage}
-                    onClick={() => handleNavigate(user.username)}
+                    className="rounded-full self-center cursor-pointer h-10 w-12"
+                    src={user.profile_image}
+                    onClick={() => handleNavigate(user.user_name)}
                   />
                   <div className="flex flex-col">
                     <p
                       className="font-semibold cursor-pointer"
-                      onClick={() => handleNavigate(user.username)}
+                      onClick={() => handleNavigate(user.user_name)}
                     >
-                      {user.fullName}
+                      {user.full_name}
                     </p>
-                    <p className="text-xs text-gray-400">@{user.username}</p>
+                    <p className="text-xs text-gray-400">@{user.user_name}</p>
                   </div>
                 </div>
               ))

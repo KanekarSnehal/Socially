@@ -7,11 +7,12 @@ import {
   editPost,
   likePost,
   dislikePost,
+  bookmarkPost,
+  unBookmarkPost,
+  getAllBookmarkedPosts
 } from "../../services/post";
 import {
-  bookmarkPost,
-  getBookmarks,
-  unBookmarkPost,
+
 } from "../../services/user";
 import {
   addComment,
@@ -43,7 +44,7 @@ export const fetchAllPosts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await getAllPosts();
-      return data.posts;
+      return data;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -55,7 +56,7 @@ export const fetchUserPosts = createAsyncThunk(
   async (username, { rejectWithValue }) => {
     try {
       const { data } = await getPostsByUserName(username);
-      return data.posts;
+      return data;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -66,8 +67,8 @@ export const fetchAllBookmarks = createAsyncThunk(
   "post/getBookmarks",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await getBookmarks();
-      return data.bookmarks;
+      const { data } = await getAllBookmarkedPosts();
+      return data;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -78,7 +79,7 @@ export const addUserPost = createAsyncThunk(
   async (postData, { rejectWithValue }) => {
     try {
       const { data } = await addPost(postData);
-      return data.posts;
+      return data;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -90,7 +91,7 @@ export const deleteUserPost = createAsyncThunk(
   async (postId, { rejectWithValue }) => {
     try {
       const { data } = await deletePost(postId);
-      return data.posts;
+      return data;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -101,8 +102,8 @@ export const editUserPost = createAsyncThunk(
   "post/editPost",
   async (postData, { rejectWithValue }) => {
     try {
-      const { data } = await editPost(postData);
-      return data.posts;
+      const { data } = await editPost(postData.data, postData.id);
+      return data;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -116,7 +117,7 @@ export const likeDislikeUserPost = createAsyncThunk(
       const { data } = isLiked
         ? await dislikePost(postId)
         : await likePost(postId);
-      return data.posts;
+      return data;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -154,7 +155,7 @@ export const addUserComment = createAsyncThunk(
   async ({ postId, commentData }, { rejectWithValue }) => {
     try {
       const { data } = await addComment(postId, commentData);
-      return data.posts;
+      return data;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -166,7 +167,7 @@ export const editUserComment = createAsyncThunk(
   async ({ postId, commentId, commentData }, { rejectWithValue }) => {
     try {
       const { data } = await editComment(postId, commentId, commentData);
-      return data.posts;
+      return data;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -178,7 +179,7 @@ export const deleteUserComment = createAsyncThunk(
   async ({ postId, commentId }, { rejectWithValue }) => {
     try {
       const { data } = await deleteComment(postId, commentId);
-      return data.posts;
+      return data;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -220,7 +221,7 @@ const postSlice = createSlice({
       })
       .addCase(fetchAllPosts.fulfilled, (state, action) => {
         state.getAllPostsStatus = "fulfilled";
-        state.allPosts = action.payload;
+        state.allPosts = action.payload.data;
       })
       .addCase(
         fetchAllPosts.rejected,
@@ -231,7 +232,7 @@ const postSlice = createSlice({
       })
       .addCase(fetchUserPosts.fulfilled, (state, action) => {
         state.getUserPostsStatus = "fulfilled";
-        state.userPosts = action.payload;
+        state.userPosts = action.payload.data;
       })
       .addCase(fetchUserPosts.rejected, (state) => {
         state.getUserPostsStatus = "rejected";
@@ -241,7 +242,6 @@ const postSlice = createSlice({
       })
       .addCase(addUserPost.fulfilled, (state, action) => {
         state.postAddStatus = "fulfilled";
-        state.allPosts = action.payload;
       })
       .addCase(addUserPost.rejected, (state) => {
         state.postAddStatus = "rejected";
@@ -249,9 +249,8 @@ const postSlice = createSlice({
       .addCase(deleteUserPost.pending, (state) => {
         state.postDeleteStatus = "pending";
       })
-      .addCase(deleteUserPost.fulfilled, (state, action) => {
+      .addCase(deleteUserPost.fulfilled, (state) => {
         state.postDeleteStatus = "fulfilled";
-        state.allPosts = action.payload;
       })
       .addCase(deleteUserPost.rejected, (state) => {
         state.postDeleteStatus = "rejected";
@@ -261,7 +260,6 @@ const postSlice = createSlice({
       })
       .addCase(editUserPost.fulfilled, (state, action) => {
         state.postEditStatus = "fulfilled";
-        state.allPosts = action.payload;
       })
       .addCase(editUserPost.rejected, (state) => {
         state.postEditStatus = "rejected";
@@ -271,7 +269,6 @@ const postSlice = createSlice({
       })
       .addCase(likeDislikeUserPost.fulfilled, (state, action) => {
         state.getAllPostsStatus = "fulfilled";
-        state.allPosts = action.payload;
       })
       .addCase(likeDislikeUserPost.rejected, (state) => {
         state.getAllPostsStatus = "rejected";
@@ -281,7 +278,7 @@ const postSlice = createSlice({
       })
       .addCase(fetchAllBookmarks.fulfilled, (state, action) => {
         state.bookmarkStatus = "fulfilled";
-        state.bookmarks = action.payload;
+        state.bookmarks = action.payload.data;
       })
       .addCase(fetchAllBookmarks.rejected, (state) => {
         state.bookmarkStatus = "rejected";
@@ -291,7 +288,6 @@ const postSlice = createSlice({
       })
       .addCase(bookmarkUnbookmarkUserPost.fulfilled, (state, action) => {
         state.bookmarkStatus = "fulfilled";
-        state.bookmarks = action.payload;
       })
       .addCase(bookmarkUnbookmarkUserPost.rejected, (state) => {
         state.bookmarkStatus = "rejected";
@@ -315,11 +311,9 @@ const postSlice = createSlice({
       })
       .addCase(addUserComment.fulfilled, (state, action) => {
         state.commentsStatus = "fulfilled";
-        state.allPosts = action.payload;
       })
       .addCase(addUserComment.rejected, (state, action) => {
         state.commentsStatus = "rejected";
-        state.commentsError = action.payload;
         toast.error(
           `Some went wrong, Please try again, ${state.commentsError}`
         );
@@ -329,11 +323,9 @@ const postSlice = createSlice({
       })
       .addCase(editUserComment.fulfilled, (state, action) => {
         state.commentsStatus = "fulfilled";
-        state.allPosts = action.payload;
       })
       .addCase(editUserComment.rejected, (state, action) => {
         state.commentsStatus = "rejected";
-        state.commentsError = action.payload;
         toast.error(
           `Some went wrong, Please try again, ${state.commentsError}`
         );

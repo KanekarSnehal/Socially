@@ -1,27 +1,30 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { followUnfollowUser } from "../../app/features/userSlice";
+import { followUnfollowUser, fetchUserDetails, fetchAllUsers } from "../../app/features/userSlice";
 import { RiLoaderFill } from "react-icons/ri";
 
 export const FollowButton = ({ userDetails }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { followUserStatus } = useSelector((state) => state.user);
-  const isFollowing = userDetails.followers.some(
-    (currentUser) => currentUser.username === user.username
+
+  const isFollowing = userDetails?.follower?.some(
+    (currentUser) => currentUser.current_user == user.id
   );
 
   return isFollowing ? (
     <button
       className="font-semibold cursor-pointer text-secondary-400 bg-secondary-100 rounded-2xl px-3 py-1  h-8 hover:bg-secondary-200"
-      onClick={() =>
-        dispatch(
+      onClick={ async() => {
+        await dispatch(
           followUnfollowUser({
-            userId: userDetails._id,
+            userId: userDetails.id,
             isFollowing: isFollowing,
-            dispatch,
           })
         )
+        await dispatch(fetchUserDetails(userDetails.user_name));
+        await dispatch(fetchAllUsers());
+      }
       }
     >
       {followUserStatus === "pending" ? (
@@ -33,14 +36,17 @@ export const FollowButton = ({ userDetails }) => {
   ) : (
     <button
       className="font-semibold cursor-pointer text-white bg-secondary-300 rounded-2xl px-3 py-1  h-8 hover:bg-secondary-400"
-      onClick={() =>
-        dispatch(
+      onClick={ async() => {
+        await dispatch(
           followUnfollowUser({
-            userId: userDetails._id,
+            userId: userDetails.id,
             isFollowing: isFollowing,
             dispatch,
           })
         )
+        await dispatch(fetchUserDetails(userDetails.user_name));
+        await dispatch(fetchAllUsers());
+      }
       }
     >
       {followUserStatus === "pending" ? (

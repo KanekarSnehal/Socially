@@ -6,14 +6,14 @@ import { RiLoaderFill } from "react-icons/ri";
 import { toast } from "react-toastify";
 
 export const Login = () => {
-  const [loginData, setLoginData] = useState({ username: "", password: "" });
+  const [loginData, setLoginData] = useState({ userName: "", password: "", emailId: "" });
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
   const loginHandler = async () => {
-    if (loginData.username && loginData.password !== "") {
+    if (loginData.userName && loginData.password !== "") {
       const response = await dispatch(loginUser(loginData));
-      if (response?.payload.encodedToken) {
+      if (response?.payload.status == "success") {
         navigate("/");
       }
     } else {
@@ -28,11 +28,24 @@ export const Login = () => {
         type="text"
         className="form-input w-full rounded-full"
         placeholder="Enter your username"
-        value={loginData.username}
+        value={loginData.userName}
         onChange={(e) =>
           setLoginData({
             ...loginData,
-            username: e.target.value,
+            userName: e.target.value,
+          })
+        }
+      />
+      <p className="my-2 ml-2">Email id</p>
+      <input
+        type="text"
+        className="form-input w-full rounded-full"
+        placeholder="Enter your email id"
+        value={loginData.emailId}
+        onChange={(e) =>
+          setLoginData({
+            ...loginData,
+            emailId: e.target.value,
           })
         }
       />
@@ -69,7 +82,7 @@ export const Login = () => {
       <div
         className="border-b-2 border-primary-300  my-4 px-4 pt-2  hover:border-b-4 cursor-pointer font-semibold text-primary-300 text-lg hover:text-secondary-300 self-center text-center"
         onClick={() =>
-          setLoginData({ username: "snehalkanekar", password: "snehal@123" })
+          setLoginData({ userName: "snehal", password: "snehal", emailId: "snehal@gmail.com" })
         }
       >
         Fill Test Data

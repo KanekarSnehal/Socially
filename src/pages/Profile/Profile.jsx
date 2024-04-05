@@ -13,11 +13,12 @@ export const Profile = () => {
   const { userDetails, allUsers, userDetailsStatus } = useSelector(
     (state) => state.user
   );
+  const { user } = useSelector((state) => state.auth);
   const { allPosts } = useSelector((state) => state.post);
 
   useEffect(() => {
     dispatch(fetchUserDetails(username));
-  }, [allUsers, username]);
+  }, [username]);
 
   useEffect(() => {
     dispatch(fetchUserPosts(username));
@@ -26,9 +27,9 @@ export const Profile = () => {
   return (
     <div className="lg:w-1/2 w-full px-4 py-2 relative">
       <p className="font-semibold text-2xl text-secondary-300 mb-8">Profile</p>
-      {userDetails?.username && (
+      {userDetails?.user_name && (
         <>
-          <UserDetails user={userDetails} postLength={userPosts.length} />
+          <UserDetails user={userDetails} postLength={userPosts.length} showEditButton={ user.user_name == userDetails.user_name } />
           {userPosts && <PostList posts={userPosts} />}
         </>
       )}

@@ -9,6 +9,7 @@ export const Signup = () => {
     fullName: "",
     userName: "",
     password: "",
+    emailId: ""
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -19,12 +20,10 @@ export const Signup = () => {
     if (
       signupData.fullName !== "" &&
       signupData.userName !== "" &&
-      signupData.password !== ""
+      signupData.password !== "" &&
+      signupData.emailId !== ""
     ) {
       const response = await dispatch(signupUser(signupData));
-      if (response?.payload.encodedToken) {
-        navigate("/");
-      }
     } else {
       toast.error(`Please enter valid details`);
     }
@@ -49,6 +48,15 @@ export const Signup = () => {
         placeholder="Enter your username"
         name="userName"
         value={signupData.userName}
+        onChange={changeHandler}
+      />
+      <p className="mt-4 ml-2">Email id</p>
+      <input
+        type="text"
+        className="form-input w-full rounded-full"
+        placeholder="Enter your email id"
+        name="emailId"
+        value={signupData.emailId}
         onChange={changeHandler}
       />
       <p className="mt-4 ml-2">Password</p>

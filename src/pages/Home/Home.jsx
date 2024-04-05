@@ -1,25 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { PostList } from "../../components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import loader from "../../assets/loader.svg";
+import { fetchAllPosts } from "../../app/features/postSlice";
 
 export const Home = () => {
   const { allPosts, getAllPostsStatus } = useSelector((state) => state.post);
   const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-  const homePosts = allPosts?.filter(
-    (post) =>
-      post.username === user.username ||
-      user.following.find(
-        (followingUser) => followingUser.username === post.username
-      )
-  );
+  useEffect(() => {
+    dispatch(fetchAllPosts());
+  }, []);
 
   return (
     <div className="lg:w-1/2 w-full px-4 py-2 relative">
       <p className="font-semibold text-2xl text-secondary-300">Home</p>
-      {homePosts?.length ? (
-        <PostList posts={homePosts} />
+      {allPosts?.length ? (
+        <PostList posts={allPosts} />
       ) : getAllPostsStatus === "pending" ? (
         <div className="flex justify-center items-center">
           <img src={loader} className="w-36 h-36" alt="loader" />

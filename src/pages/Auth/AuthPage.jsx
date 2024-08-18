@@ -33,7 +33,7 @@ export const AuthPage = () => {
             </li>
           </ul>
           <div className="flex-col">
-            {activeTab === "login" ? <Login /> : <Signup />}
+            {activeTab === "login" ? <Login /> : <Signup setActiveTab={setActiveTab}/>}
           </div>
         </div>
       </div>

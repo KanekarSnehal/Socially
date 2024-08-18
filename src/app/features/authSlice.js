@@ -73,7 +73,7 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-        toast.error(`Some went wrong, Please try again:( ${state.error}`);
+        toast.error(`Account with given Username, Email Id and Password does not exits`);
       })
       .addCase(signupUser.pending, (state) => {
         state.loading = true;
@@ -87,7 +87,7 @@ const authSlice = createSlice({
       .addCase(signupUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-        toast.error(`Some went wrong, Please try again:( ${state.error}`);
+        toast.error(`User is already registered with this e-mail address or username`);
       })
       .addCase(editUserDetails.pending, (state) => {
         state.loading = true;

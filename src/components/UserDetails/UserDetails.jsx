@@ -8,10 +8,17 @@ export const UserDetails = ({ user, showEditButton, postLength }) => {
   return (
     <>
       <div className=" bg-white px-6 py-4 gap-4 border rounded-lg shadow-lg  flex h-fit sm:gap-6 mb-4">
-        <img
-          className="sm:h-20 h-16 w-20 rounded-full cursor-pointer sm:w-20 bg-secondary-100"
-          src={user.profile_image}
-        />
+        {
+          user.profile_image ? 
+          <img
+            className="sm:h-20 h-16 w-20 rounded-full cursor-pointer sm:w-20 bg-secondary-100"
+            src={user.profile_image}
+          /> 
+          :
+          <div className="sm:h-20 h-16 w-16 flex items-center justify-center capitalize rounded-full cursor-pointer sm:w-24 bg-secondary-100">
+            {user.full_name.slice(0,1)}
+          </div>
+        }
         <div className="flex flex-col w-full gap-2">
           <div className="flex justify-between">
             <div>

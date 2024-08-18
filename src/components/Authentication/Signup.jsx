@@ -4,14 +4,13 @@ import { signupUser } from "../../app/features/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export const Signup = () => {
+export const Signup = ({ setActiveTab }) => {
   const [signupData, setSignupData] = useState({
     fullName: "",
     userName: "",
     password: "",
     emailId: ""
   });
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const changeHandler = (e) => {
     setSignupData({ ...signupData, [e.target.name]: e.target.value });
@@ -24,6 +23,9 @@ export const Signup = () => {
       signupData.emailId !== ""
     ) {
       const response = await dispatch(signupUser(signupData));
+      if (response?.payload.status == "success") {
+        setActiveTab("login");
+      } 
     } else {
       toast.error(`Please enter valid details`);
     }

@@ -70,11 +70,18 @@ export const SinglePost = ({ post }) => {
     <>
       <div className=" bg-white px-6 py-4 border rounded-lg shadow-lg  flex h-fit flex-col ">
         <div className="flex mb-2">
-          <img
-            className="h-12 w-12 object-contain rounded-full cursor-pointer"
-            src={profile_image}
-            onClick={handleNavigate}
-          />
+          {
+            profile_image ? 
+            <img
+              className="h-12 w-12 object-contain rounded-full cursor-pointer"
+              src={profile_image}
+              onClick={handleNavigate}
+            />
+            :
+            <div className="h-12 w-14  flex items-center justify-center capitalize rounded-full cursor-pointer bg-secondary-100" onClick={handleNavigate}>
+            {user.full_name.slice(0,1)}
+            </div>
+          }
           <div className="flex items-center justify-between w-full ml-2">
             <div onClick={handleNavigate}>
               <span className="md:text-lg font-semibold cursor-pointer ml-1 mr-1">

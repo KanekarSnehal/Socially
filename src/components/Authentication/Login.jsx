@@ -15,11 +15,17 @@ export const Login = () => {
       const response = await dispatch(loginUser(loginData));
       if (response?.payload.status == "success") {
         navigate("/");
+      } else if(response?.payload.status == "failure") {
+        toast.error(`Account with given Username, Email Id and Password does not exits`);
       }
     } else {
       toast.error(`Please enter valid details`);
     }
   };
+
+  const fillTestData = () => {
+    setLoginData({ userName: process.env.REACT_APP_USERNAME || "", password: process.env.REACT_APP_TEST_PASSWORD || "", emailId: process.env.REACT_APP_TEST_EMAIL || "" })
+  }
 
   return (
     <>
@@ -81,9 +87,7 @@ export const Login = () => {
       </button>
       <div
         className="border-b-2 border-primary-300  my-4 px-4 pt-2  hover:border-b-4 cursor-pointer font-semibold text-primary-300 text-lg hover:text-secondary-300 self-center text-center"
-        onClick={() =>
-          setLoginData({ userName: "snehal", password: "snehal", emailId: "snehal@gmail.com" })
-        }
+        onClick={fillTestData}
       >
         Fill Test Data
       </div>

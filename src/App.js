@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
-import { useDispatch, useSelector } from "react-redux";
 import { AppRoutes } from "./routes/AppRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { fetchAllBookmarks, fetchAllPosts } from "./app/features/postSlice";
-import { fetchAllUsers } from "./app/features/userSlice";
 
 function App() {
-  const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.auth);
 
   return (
     <div className="App">
